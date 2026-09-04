@@ -39,8 +39,16 @@ Nach dem Absenden bekommt der Besteller den PayPal-Link mit dem exakten Betrag
 
 ## Hosting
 
-Reine statische Seite (HTML, CSS, JS). Einfach den Ordner auf GitHub Pages, Netlify, Vercel oder
-einen beliebigen Webspace legen. Lokal testen:
+Die Seite wird automatisch per GitHub Pages veröffentlicht:
+
+**https://jonas-liquify.github.io/malzkreis-shirts/**
+
+Jeder Push auf `main` löst den Workflow `.github/workflows/pages.yml` aus, der die Seite neu
+deployt (beim ersten Lauf wird GitHub Pages automatisch aktiviert). Eine eigene Domain ist nicht
+nötig; falls doch, kann sie später unter *Settings → Pages* eingetragen werden.
+
+Reine statische Seite (HTML, CSS, JS), läuft genauso auf Netlify, Vercel oder jedem Webspace.
+Lokal testen:
 
 ```bash
 python3 -m http.server 8080
