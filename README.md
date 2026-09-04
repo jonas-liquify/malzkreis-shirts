@@ -13,6 +13,7 @@ Alles Wichtige steht in **`js/config.js`**:
 | PayPal.me-Link | `paypalMe` – ohne Betrag, z. B. `https://paypal.me/ulmermalzkreis` |
 | Preis, Versand, Größen, Farben, Bestellschluss, Produktions- und Liefertermin | `shirt` |
 | E-Mail für Bestellungen & Kontakt | `stammtisch.email` |
+| Spenden-Schnellbeträge und Verwendungszweck | `spende` |
 | Kennzahlen (Mitglieder, Gründung, Bier) | `stammtisch` |
 
 Weitere Stellen, die noch ausgefüllt werden sollten (mit `TODO` markiert):
@@ -20,7 +21,6 @@ Weitere Stellen, die noch ausgefüllt werden sollten (mit `TODO` markiert):
 - **Shirt-Fotos**: Aktuell zeigt die Seite eine SVG-Vorschau des Shirts, die automatisch die
   Farbe wechselt. Für echte Fotos in `index.html` die beiden `<div class="shirt-photo …">`
   durch `<img src="assets/shirt-front.jpg">` bzw. `shirt-back.jpg` ersetzen.
-- **Impressum** im Footer von `index.html`.
 - **Logo**: Das Wortmarken-Logo kann in `.brand` gegen `<img src="assets/logo.svg">` getauscht werden.
 
 ## Wie kommen die Bestellungen an?
