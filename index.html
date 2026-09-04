@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>161,53 Meter Stolz – das Malzkreis-Shirt | Ulmer Malzkreis</title>
+  <meta name="description" content="Dear Barcelona, you can't win a race that ended in 1890. Das Shirt des Ulmer Malzkreis – jedes verkaufte Shirt füllt die Stammtischkasse. Bestellen, per PayPal bezahlen, am Stammtisch abholen.">
+  <meta property="og:title" content="161,53 Meter Stolz. Jetzt auch zum Anziehen.">
+  <meta property="og:description" content="Dear Barcelona, you can't win a race that ended in 1890. Das Shirt des Ulmer Malzkreis – jedes Shirt füllt die Stammtischkasse.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/shirt-back.jpg">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#top" class="brand" aria-label="Ulmer Malzkreis">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-text">Ulmer <strong>Malzkreis</strong></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#shirt">Das Shirt</a>
+        <a href="#story">Die Story</a>
+        <a href="#ablauf">So geht's</a>
+        <a href="#faq">FAQ</a>
+        <a href="#bestellen" class="button button-small">Shirt bestellen</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="tag">
+            <span class="dot" aria-hidden="true"></span>
+            <span data-bind="tag-bestellschluss">Limitierte Auflage</span>
+          </div>
+          <h1 class="heading-1">161,53 Meter Stolz.<br>Jetzt auch zum Anziehen.</h1>
+          <p class="lead">
+            Barcelona baut noch – Ulm war 1890 fertig. Unser Shirt sagt das freundlich, aber deutlich:
+            vorne ein dezentes <strong>ULMER</strong> auf der Brust, hinten Münster, Spatz und die Ansage
+            <em>„Dear Barcelona, you can't win a race that ended in 1890.“</em>
+            Mit jedem Shirt füllst du die Kasse des <strong>Ulmer Malzkreis</strong>.
+          </p>
+          <div class="hero-actions">
+            <a href="#bestellen" class="button button-primary">Jetzt Shirt bestellen</a>
+            <a href="#shirt" class="button button-link">Shirt anschauen <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="hero-facts">
+            <li><strong data-bind="preis-kurz">25 €</strong> pro Shirt</li>
+            <li>Bezahlung per <strong>PayPal</strong></li>
+            <li>Abholung am <strong>Stammtisch</strong></li>
+          </ul>
+        </div>
+        <div class="hero-visual">
+          <div class="shirt-stage" id="hero-shirt" data-side="back"></div>
+          <div class="hero-controls">
+            <div class="shirt-side-toggle" role="group" aria-label="Vorder- oder Rückseite">
+              <button type="button" data-side="front" aria-pressed="false">Vorne</button>
+              <button type="button" data-side="back" aria-pressed="true">Hinten</button>
+            </div>
+            <div class="swatches" id="hero-swatches" aria-label="Farbe wählen"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WER WIR SIND ===== -->
+    <section class="section section-dark" id="malzkreis">
+      <div class="container">
+        <div class="tag tag-light">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Wer steckt dahinter?</span>
+        </div>
+        <h2 class="heading-2">
+          Wir sind der <span class="text-pink">Ulmer Malzkreis</span> – ein Stammtisch aus
+          bierbegeisterten Menschen, die sich regelmäßig treffen, um gemeinsam zu philosophieren,
+          zu lachen und das ein oder andere Glas zu heben.
+        </h2>
+        <div class="big-numbers">
+          <div class="big-number">
+            <div class="big-number-value" data-bind="mitglieder">11,5</div>
+            <div class="big-number-label">Mitglieder</div>
+          </div>
+          <div class="big-number">
+            <div class="big-number-value" data-bind="gruendung">2024</div>
+            <div class="big-number-label">Gründung</div>
+          </div>
+          <div class="big-number">
+            <div class="big-number-value" data-bind="bierverbrauch">692 l</div>
+            <div class="big-number-label">Bierverbrauch seit Gründung</div>
+          </div>
+        </div>
+        <p class="text-muted">
+          Du warst auf unserem <a href="https://sommerfest-malzkreis.webflow.io/" target="_blank" rel="noopener" data-bind="sommerfest-link">Sommerfest</a>?
+          Dann weißt du: Bei uns ist alles kostenlos – außer der Durst. Mit dem Shirt kannst du uns
+          jetzt trotzdem etwas zurückgeben.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== DAS SHIRT ===== -->
+    <section class="section" id="shirt">
+      <div class="container">
+        <div class="section-header">
+          <div class="tag">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Das Shirt</span>
+          </div>
+          <h2 class="heading-1" data-bind="shirt-name">Dear Barcelona – das Malzkreis-Shirt</h2>
+        </div>
+
+        <div class="shirt-grid">
+          <div class="shirt-gallery">
+            <figure class="shirt-card">
+              <div class="shirt-photo shirt-photo-placeholder" data-side="front"></div>
+              <figcaption>Vorne: dezentes „ULMER“ auf der Brust</figcaption>
+            </figure>
+            <figure class="shirt-card">
+              <div class="shirt-photo shirt-photo-placeholder" data-side="back"></div>
+              <figcaption>Hinten: Münster, Spatz &amp; die Ansage nach Barcelona</figcaption>
+            </figure>
+          </div>
+
+          <div class="shirt-details">
+            <div class="price-block">
+              <div class="price" data-bind="preis">25 €</div>
+              <div class="price-note">inkl. MwSt.<span data-bind="versand-note"></span></div>
+            </div>
+            <ul class="check-list">
+              <li data-bind="material">Oversize-Schnitt, schwere Bio-Baumwolle, Siebdruck</li>
+              <li>Farbe Creme, Druck in Münster-Grün</li>
+              <li>Unisex, Größen <span data-bind="groessen-liste">S – XXL</span></li>
+              <li>Abholung am Stammtisch kostenlos, Versand möglich</li>
+              <li>Der Erlös geht komplett in die Stammtischkasse</li>
+            </ul>
+            <div class="color-list" id="shirt-colors"></div>
+            <a href="#bestellen" class="button button-primary button-block">Jetzt bestellen</a>
+            <p class="small text-muted">
+              Wir sammeln Bestellungen bis zum <strong data-bind="bestellschluss">Bestellschluss</strong>
+              und drucken dann in einem Rutsch. Kein Lager, kein Risiko, kein Ausschuss.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DIE STORY ===== -->
+    <section class="section section-cream" id="story">
+      <div class="container">
+        <div class="section-header">
+          <div class="tag">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Die Story hinter dem Motiv</span>
+          </div>
+          <h2 class="heading-1">Warum Barcelona?</h2>
+        </div>
+        <div class="story">
+          <div>
+            <p class="quote"><small>Dear Barcelona,</small>You can't win a race that ended in 1890.</p>
+          </div>
+          <div>
+            <h3 class="heading-3">161,53 Meter. Seit 1890. Unangefochten.</h3>
+            <p>
+              Das Ulmer Münster hat den höchsten Kirchturm der Welt – fertiggestellt 1890, nach über
+              500 Jahren Bauzeit. Seitdem hat es sich niemand mehr getraut, höher zu bauen.
+            </p>
+            <p>
+              Bis Barcelona kam. Die Sagrada Família soll mit ihrem Hauptturm in den nächsten Jahren
+              knapp über das Münster hinauswachsen. Wir finden: nette Idee. Aber das Rennen ist seit
+              136 Jahren entschieden. Der Ulmer Spatz auf der Turmspitze hat das Foto längst gemacht.
+            </p>
+            <p>
+              Deshalb trägt das Shirt hinten das Münster, den Spatz und eine freundliche Ansage an unsere
+              katalanischen Freunde. Vorne nur ein Wort: <strong>ULMER</strong>. Mehr braucht es nicht.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SO GEHT'S ===== -->
+    <section class="section section-tint" id="ablauf">
+      <div class="container">
+        <div class="section-header">
+          <div class="tag">
+            <span class="dot" aria-hidden="true"></span>
+            <span>So funktioniert's</span>
+          </div>
+          <h2 class="heading-1">In drei Schritten zum Shirt</h2>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <div class="step-number">1</div>
+            <h3>Bestellen</h3>
+            <p>Formular ausfüllen: Größe und Anzahl. Dauert eine Minute, kein Konto nötig.</p>
+          </li>
+          <li class="step">
+            <div class="step-number">2</div>
+            <h3>Per PayPal bezahlen</h3>
+            <p>Nach dem Absenden bekommst du einen PayPal-Link mit deinem Betrag. Bitte <strong>„An Freunde &amp; Familie senden“</strong> wählen und deinen Namen als Hinweis eintragen.</p>
+          </li>
+          <li class="step">
+            <div class="step-number">3</div>
+            <h3>Abholen &amp; anziehen</h3>
+            <p>Sobald die Shirts da sind, melden wir uns. Abholung am Stammtisch oder per Post zu dir nach Hause.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== BESTELLFORMULAR ===== -->
+    <section class="section" id="bestellen">
+      <div class="container container-narrow">
+        <div class="section-header">
+          <div class="tag">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Bestellung</span>
+          </div>
+          <h2 class="heading-1">Shirt bestellen</h2>
+          <p class="lead">Fülle das Formular aus, danach geht's direkt weiter zu PayPal.</p>
+        </div>
+
+        <form id="order-form" class="order-form" name="bestellung" method="POST" data-netlify="true" netlify-honeypot="website" novalidate>
+          <input type="hidden" name="form-name" value="bestellung">
+          <p class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Name <span class="req">*</span></label>
+              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Vor- und Nachname">
+            </div>
+            <div class="field">
+              <label for="email">E-Mail <span class="req">*</span></label>
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="du@beispiel.de">
+            </div>
+          </div>
+
+          <div class="form-row form-row-3" id="variant-row">
+            <div class="field">
+              <label for="groesse">Größe <span class="req">*</span></label>
+              <select id="groesse" name="groesse" required></select>
+            </div>
+            <div class="field" id="farbe-field">
+              <label for="farbe">Farbe <span class="req">*</span></label>
+              <select id="farbe" name="farbe" required></select>
+            </div>
+            <div class="field">
+              <label for="anzahl">Anzahl <span class="req">*</span></label>
+              <input id="anzahl" name="anzahl" type="number" min="1" max="20" value="1" required inputmode="numeric">
+            </div>
+          </div>
+
+          <fieldset class="field" id="lieferung-fieldset">
+            <legend>Lieferung <span class="req">*</span></legend>
+            <div class="radio-group">
+              <label class="radio">
+                <input type="radio" name="lieferung" value="abholung" checked>
+                <span><strong>Abholung am Stammtisch</strong><br><small>kostenlos, wir sagen dir Bescheid</small></span>
+              </label>
+              <label class="radio" id="versand-option">
+                <input type="radio" name="lieferung" value="versand">
+                <span><strong>Versand</strong><br><small>+ <span data-bind="versand">4,90 €</span> pauschal</small></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="field" id="adresse-field" hidden>
+            <label for="adresse">Lieferadresse <span class="req">*</span></label>
+            <textarea id="adresse" name="adresse" rows="3" placeholder="Straße Hausnummer&#10;PLZ Ort" autocomplete="street-address"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="bemerkung">Bemerkung <span class="optional">(optional)</span></label>
+            <textarea id="bemerkung" name="bemerkung" rows="2" placeholder="z. B. verschiedene Größen bei mehreren Shirts, Grüße an die Kasse …"></textarea>
+          </div>
+
+          <label class="checkbox">
+            <input type="checkbox" name="einverstaendnis" id="einverstaendnis" required>
+            <span>Ich habe verstanden, dass meine Bestellung erst nach Zahlungseingang per PayPal verbindlich ist und meine Daten nur zur Abwicklung der Bestellung verwendet werden. <span class="req">*</span></span>
+          </label>
+
+          <div class="summary">
+            <div class="summary-row"><span><span data-bind="sum-anzahl">1</span> × Shirt</span><span data-bind="sum-shirts">25,00 €</span></div>
+            <div class="summary-row" id="sum-versand-row" hidden><span>Versand</span><span data-bind="sum-versand">4,90 €</span></div>
+            <div class="summary-row summary-total"><span>Gesamt</span><span data-bind="sum-total">25,00 €</span></div>
+          </div>
+
+          <div class="form-error" id="form-error" role="alert" hidden></div>
+
+          <button type="submit" class="button button-primary button-block button-large" id="submit-btn">
+            Bestellung absenden &amp; zu PayPal
+          </button>
+          <p class="small text-muted center">Mit dem Absenden landet deine Bestellung bei uns. Im nächsten Schritt bekommst du den PayPal-Link.</p>
+        </form>
+
+        <!-- Erfolgs-Panel -->
+        <div id="order-success" class="success" hidden>
+          <div class="success-icon" aria-hidden="true">🍻</div>
+          <h3 class="heading-3">Prost, <span data-bind="success-name">du</span>! Fast geschafft.</h3>
+          <p>Deine Bestellung ist bei uns eingegangen. Jetzt fehlt nur noch die Zahlung:</p>
+
+          <div class="success-summary" id="success-summary"></div>
+
+          <a id="paypal-link" class="button button-paypal button-block button-large" href="#" target="_blank" rel="noopener">
+            <span data-bind="success-total">25,00 €</span> per PayPal senden
+          </a>
+
+          <div class="success-hints">
+            <p><strong>Wichtig bei PayPal:</strong></p>
+            <ol>
+              <li>Wähle <strong>„An Freunde &amp; Familie senden“</strong> – so fallen keine Gebühren an und alles landet in der Kasse.</li>
+              <li>Schreibe als Hinweis: <code id="verwendungszweck">Shirt – Name</code>
+                <button type="button" class="copy-btn" id="copy-vz">Kopieren</button></li>
+            </ol>
+          </div>
+
+          <p class="small text-muted" id="mailto-hint" hidden>
+            Falls sich dein Mailprogramm nicht geöffnet hat: Schick uns die Bestellung bitte kurz an
+            <a data-bind="email-link" href="#">unsere Kassen-Adresse</a>.
+          </p>
+          <button type="button" class="button button-link" id="order-again">Noch ein Shirt bestellen</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section section-tint" id="faq">
+      <div class="container container-narrow">
+        <div class="section-header">
+          <div class="tag">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Fragen &amp; Antworten</span>
+          </div>
+          <h2 class="heading-1">Noch Fragen?</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Wann bekomme ich mein Shirt?</summary>
+            <p>Wir sammeln alle Bestellungen bis zum <strong data-bind="bestellschluss">Bestellschluss</strong> und geben dann gesammelt den Druck in Auftrag. Rechne mit etwa zwei bis drei Wochen danach. Wir melden uns per E-Mail, sobald die Shirts da sind.</p>
+          </details>
+          <details>
+            <summary>Warum „Freunde &amp; Familie“ bei PayPal?</summary>
+            <p>Wir sind kein Unternehmen, sondern ein Stammtisch. Bei „Freunde &amp; Familie“ fallen keine PayPal-Gebühren an, und der volle Betrag landet in der Stammtischkasse. Dafür gibt es keinen PayPal-Käuferschutz – du vertraust uns, wir liefern. Versprochen.</p>
+          </details>
+          <details>
+            <summary>Wie fällt das Shirt aus?</summary>
+            <p>Bewusst oversize und boxy geschnitten, so wie auf den Bildern. Wenn du es eher normal tragen willst, nimm eine Größe kleiner als sonst. Bei Unsicherheit einfach am Stammtisch anprobieren.</p>
+          </details>
+          <details>
+            <summary>Kann ich mehrere Shirts in verschiedenen Größen bestellen?</summary>
+            <p>Klar. Stell die Anzahl ein und schreib die Aufteilung (z. B. „1× M, 1× L“) ins Bemerkungsfeld. Oder du schickst einfach mehrere Bestellungen ab.</p>
+          </details>
+          <details>
+            <summary>Wohin geht das Geld?</summary>
+            <p>Nach Abzug der Druckkosten komplett in die Stammtischkasse. Daraus finanzieren wir unter anderem das Sommerfest, das für alle Gäste kostenlos ist.</p>
+          </details>
+          <details>
+            <summary>Stimmt das mit 1890 wirklich?</summary>
+            <p>Ja. Der Hauptturm des Ulmer Münsters wurde am 31. Mai 1890 fertiggestellt und ist mit 161,53 Metern bis heute der höchste Kirchturm der Welt. Barcelona baut noch. Wir warten entspannt.</p>
+          </details>
+          <details>
+            <summary>Ich habe eine andere Frage.</summary>
+            <p>Schreib uns einfach an <a data-bind="email-link" href="#">unsere Kassen-Adresse</a> oder sprich uns am Stammtisch an.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-text">Ulmer <strong>Malzkreis</strong></span>
+        </div>
+        <p class="small text-muted">Ein Stammtisch aus Ulm. Seit 2024. Für gute Gesellschaft und gutes Bier.</p>
+      </div>
+      <nav class="footer-links">
+        <a href="https://sommerfest-malzkreis.webflow.io/" target="_blank" rel="noopener" data-bind="sommerfest-link">Sommerfest</a>
+        <a data-bind="email-link" href="#">Kontakt</a>
+        <a href="#impressum">Impressum</a>
+      </nav>
+    </div>
+    <div class="container">
+      <details class="impressum" id="impressum">
+        <summary>Impressum &amp; Datenschutz</summary>
+        <!-- TODO: Impressum ausfüllen (Name, Anschrift, Kontakt der verantwortlichen Person) -->
+        <p><strong>Verantwortlich:</strong> Ulmer Malzkreis, [Name], [Straße Hausnummer], [PLZ] Ulm · <a data-bind="email-link" href="#">E-Mail</a></p>
+        <p>Diese Seite ist ein privates, nicht-kommerzielles Angebot eines Stammtischs. Die im Bestellformular angegebenen Daten werden ausschließlich zur Abwicklung deiner Shirt-Bestellung verwendet und nach Abschluss gelöscht. Es werden keine Cookies gesetzt und keine Tracking-Dienste eingesetzt. Schriften werden von Google Fonts geladen; dabei wird deine IP-Adresse an Google übertragen. Die Zahlung erfolgt über PayPal; es gelten die Datenschutzbestimmungen von PayPal.</p>
+      </details>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/shirt.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
