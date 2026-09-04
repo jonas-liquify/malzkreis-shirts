@@ -396,7 +396,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
 
 /* ---------- Sticky-CTA (mobil) ---------- */
 .sticky-cta {
-  position: fixed; left: .75rem; right: .75rem; bottom: .75rem; z-index: 60;
+  position: fixed; left: .75rem; right: .75rem; z-index: 60;
+  bottom: calc(.75rem + env(safe-area-inset-bottom, 0px));
   display: flex; align-items: center; justify-content: space-between; gap: .75rem;
   background: rgba(20, 20, 15, .92); color: var(--cream); border-radius: 999px; padding: .5rem .5rem .5rem 1.1rem;
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 12px 30px rgba(0,0,0,.25);
@@ -406,6 +407,10 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
 .sticky-cta-text { font-size: .85rem; }
 .sticky-cta .button { border-color: var(--green); }
 @media (min-width: 761px) { .sticky-cta { display: none; } }
+/* iOS Safari: die schwebende Tab-Leiste überlagert den unteren Rand, Leiste höher setzen */
+@supports (-webkit-touch-callout: none) {
+  .sticky-cta { bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px)); }
+}
 
 /* ---------- Scroll-Reveal ---------- */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
@@ -438,7 +443,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
   .positions.single-color .position { grid-template-columns: 1fr auto; }
   .positions.single-color .position .field:first-child { grid-column: 1 / -1; }
   .position-color { grid-column: 1 / -1; }
-  .footer { padding-bottom: 6.5rem; }
+  .footer { padding-bottom: calc(10rem + env(safe-area-inset-bottom, 0px)); }
   .donate-amounts { grid-template-columns: repeat(2, 1fr); }
   .donate-custom { flex-direction: column; align-items: flex-start; gap: .5rem; }
 }
