@@ -1,6 +1,7 @@
 # Ulmer Malzkreis – Shirt-Shop
 
-One-Pager, über den der Stammtisch sein Shirt bewirbt und Bestellungen entgegennimmt.
+One-Pager, über den der Stammtisch sein Shirt bewirbt und Vorbestellungen entgegennimmt
+(Produktion gesammelt im November).
 Bezahlt wird per **PayPal Freunde & Familie**, deshalb braucht die Seite keinen Shop und kein Backend.
 
 ## Anpassen
@@ -10,7 +11,7 @@ Alles Wichtige steht in **`js/config.js`**:
 | Was | Wo |
 |---|---|
 | PayPal.me-Link | `paypalMe` – ohne Betrag, z. B. `https://paypal.me/ulmermalzkreis` |
-| Preis, Versand, Größen, Farben, Bestellschluss | `shirt` |
+| Preis, Versand, Größen, Farben, Bestellschluss, Produktions- und Liefertermin | `shirt` |
 | E-Mail für Bestellungen & Kontakt | `stammtisch.email` |
 | Kennzahlen (Mitglieder, Gründung, Bier) | `stammtisch` |
 
