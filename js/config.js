@@ -20,7 +20,7 @@ window.SHOP_CONFIG = {
   // --- PayPal -------------------------------------------------
   // PayPal.me-Link OHNE Betrag, z. B. "https://paypal.me/ulmermalzkreis"
   // Der Betrag wird automatisch angehängt (…/25EUR).
-  paypalMe: "https://paypal.me/DEINNAME",        // TODO: echten PayPal.me-Link eintragen
+  paypalMe: "https://www.paypal.me/jonasfilms",
 
   // --- Shirt --------------------------------------------------
   shirt: {
