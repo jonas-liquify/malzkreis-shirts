@@ -22,6 +22,12 @@ window.SHOP_CONFIG = {
   // Der Betrag wird automatisch angehängt (…/25EUR).
   paypalMe: "https://www.paypal.me/jonasfilms",
 
+  // --- Spenden ------------------------------------------------
+  spende: {
+    betraege: [5, 10, 20, 50],        // Schnellauswahl in Euro
+    verwendungszweck: "Spende Sommerfest Malzkreis",
+  },
+
   // --- Shirt --------------------------------------------------
   shirt: {
     name: "Dear Barcelona – das Malzkreis-Shirt",

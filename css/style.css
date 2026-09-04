@@ -227,6 +227,32 @@ section, .success, .order-form { scroll-margin-top: 90px; }
 .big-number-value { font-family: var(--display); font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1; letter-spacing: -.03em; color: var(--cream); font-variant-numeric: tabular-nums; }
 .big-number-label { margin-top: .6rem; color: rgba(244,237,220,.65); font-size: .95rem; }
 
+/* ---------- Spenden ---------- */
+.hero-donate-hint { margin: -.75rem 0 1.75rem; font-size: .95rem; color: var(--muted); }
+.hero-donate-hint a { color: var(--green); font-weight: 600; text-decoration: none; border-bottom: 2px solid rgba(27,94,59,.25); }
+.hero-donate-hint a:hover { border-color: var(--green); }
+.section-donate { background: var(--cream-2); padding-top: clamp(2.5rem, 5vw, 4rem); }
+.donate-card {
+  position: relative; overflow: hidden; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 4vw, 4rem); align-items: center;
+  background: var(--green-deep); color: var(--cream); border-radius: var(--radius); padding: clamp(2rem, 4vw, 3.5rem); box-shadow: var(--shadow);
+}
+.donate-card .heading-1 { color: var(--cream); }
+.donate-card .lead { color: rgba(244,237,220,.82); }
+.donate-muenster { position: absolute; left: -4%; bottom: -12%; width: 46%; height: auto; aspect-ratio: 154 / 136; color: var(--cream); opacity: .08; pointer-events: none; }
+.donate-copy { position: relative; }
+.donate-box { position: relative; background: var(--paper); color: var(--ink); border-radius: var(--radius); padding: clamp(1.5rem, 3vw, 2.25rem); display: grid; gap: 1rem; }
+.donate-label { font-weight: 600; font-size: .92rem; }
+.donate-amounts { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; }
+.amount { font: inherit; font-family: var(--display); font-size: 1.15rem; padding: .85rem .5rem; border-radius: var(--radius-sm); border: 2px solid var(--line); background: var(--cream); color: var(--green); cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+.amount:hover { border-color: var(--green); }
+.amount[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: var(--cream); }
+.donate-custom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: .92rem; color: var(--muted); }
+.donate-input { display: inline-flex; align-items: center; gap: .4rem; }
+.donate-input input { width: 6.5rem; padding: .65rem .8rem; font-weight: 600; }
+.donate-input b { font-weight: 600; color: var(--ink); }
+.donate-note { color: var(--muted); margin: 0; }
+.donate-note code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--cream); padding: .1rem .45rem; border-radius: 6px; font-size: .85rem; }
+
 /* ---------- Shirt section ---------- */
 .shirt-grid { display: grid; grid-template-columns: 1.25fr .85fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
 .shirt-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
@@ -359,10 +385,6 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
 .footer-links { display: flex; gap: 1.5rem; font-weight: 500; font-size: .95rem; align-items: flex-start; }
 .footer-links a { text-decoration: none; opacity: .8; }
 .footer-links a:hover { opacity: 1; color: var(--mint); }
-.impressum { font-size: .85rem; color: rgba(244,237,220,.6); border-top: 1px solid var(--line-light); padding-top: 1.25rem; }
-.impressum summary { cursor: pointer; font-weight: 500; color: rgba(244,237,220,.85); }
-.impressum p { margin-top: .75rem; }
-.impressum a { color: var(--cream); }
 
 /* ---------- Sticky-CTA (mobil) ---------- */
 .sticky-cta {
@@ -392,6 +414,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
   .steps { grid-template-columns: 1fr; }
   .big-numbers { grid-template-columns: 1fr; gap: 1.5rem; }
   .story-poster { min-height: 440px; }
+  .donate-card { grid-template-columns: 1fr; }
+  .donate-muenster { display: none; }
 }
 @media (max-width: 600px) {
   body { font-size: 1rem; }
@@ -407,6 +431,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
   .positions.single-color .position .field:first-child { grid-column: 1 / -1; }
   .position-color { grid-column: 1 / -1; }
   .footer { padding-bottom: 6.5rem; }
+  .donate-amounts { grid-template-columns: repeat(2, 1fr); }
+  .donate-custom { flex-direction: column; align-items: flex-start; gap: .5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

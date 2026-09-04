@@ -53,7 +53,7 @@
         <a href="#shirt">Das Shirt</a>
         <a href="#story">Die Story</a>
         <a href="#ablauf">So geht's</a>
-        <a href="#faq">FAQ</a>
+        <a href="#spenden">Spenden</a>
         <a href="#bestellen" class="button button-primary button-small">Jetzt vorbestellen</a>
       </nav>
     </div>
@@ -76,19 +76,19 @@
             <span class="display-sub">Jetzt auch zum Anziehen.</span>
           </h1>
           <p class="lead">
-            Barcelona baut noch – Ulm war 1890 fertig. Unser Shirt sagt das freundlich, aber deutlich:
-            vorne ein dezentes <strong>ULMER</strong> auf der Brust, hinten Münster, Spatz und die Ansage
-            <em>„Dear Barcelona, you can't win a race that ended in 1890.“</em>
+            Ulm hat den höchsten Kirchturm der Welt – seit 1890. Barcelona baut noch.
+            Unser Shirt bringt das auf den Punkt: vorne ein dezentes <strong>ULMER</strong>, hinten Münster,
+            Spatz und die Ansage <em>„Dear Barcelona, you can't win a race that ended in 1890.“</em>
           </p>
           <p class="lead lead-secondary">
-            Der Erlös wandert komplett in die Kasse des <strong>Ulmer Malzkreis</strong> und refinanziert unser
-            Sommerfest. Vorbestellbar bis <strong data-bind="bestellschluss">15. November</strong>, produziert im
-            <strong data-bind="produktion">November</strong> – rechtzeitig vor Weihnachten.
+            Jedes Shirt füllt die Kasse des <strong>Ulmer Malzkreis</strong> – und damit das nächste Sommerfest.
+            Vorbestellen bis <strong data-bind="bestellschluss">15. November</strong>, geliefert wird rechtzeitig vor Weihnachten.
           </p>
           <div class="hero-actions">
             <a href="#bestellen" class="button button-primary button-large">Jetzt vorbestellen <span class="button-price" data-bind="preis-kurz">30 €</span></a>
             <a href="#shirt" class="button button-ghost">Shirt anschauen</a>
           </div>
+          <p class="hero-donate-hint">Kein Shirt, aber Lust auf Sommerfest? <a href="#spenden">Einfach direkt spenden →</a></p>
           <ul class="hero-facts">
             <li>Oversize-Fit, Creme</li>
             <li>Bezahlung per PayPal</li>
@@ -164,6 +164,39 @@
           Stammtischkasse bezahlt. Mit dem Shirt füllst du sie wieder auf, damit es auch nächstes Jahr ein
           Sommerfest gibt.
         </p>
+      </div>
+    </section>
+
+    <!-- ===== SPENDEN ===== -->
+    <section class="section section-donate" id="spenden">
+      <div class="container">
+        <div class="donate-card reveal">
+          <svg class="donate-muenster" aria-hidden="true"><use href="#muenster"/></svg>
+          <div class="donate-copy">
+            <div class="eyebrow eyebrow-light">
+              <span class="dot" aria-hidden="true"></span>
+              <span>Ohne Shirt, mit Herz</span>
+            </div>
+            <h2 class="heading-1">Oder einfach<br>spenden.</h2>
+            <p class="lead">
+              Du brauchst kein Shirt, willst aber, dass es nächstes Jahr wieder ein Sommerfest gibt?
+              Dann schick der Stammtischkasse direkt etwas per PayPal. Jeder Euro landet in Essen,
+              Getränken und Musik für alle.
+            </p>
+          </div>
+          <div class="donate-box">
+            <div class="donate-label">Betrag wählen</div>
+            <div class="donate-amounts" id="donate-amounts" role="group" aria-label="Spendenbetrag"></div>
+            <label class="donate-custom">
+              <span>oder eigener Betrag</span>
+              <span class="donate-input"><input type="number" id="donate-custom" min="1" max="5000" step="1" inputmode="numeric" placeholder="z. B. 15"><b>€</b></span>
+            </label>
+            <a id="donate-link" class="button button-paypal button-block button-large" href="#" target="_blank" rel="noopener">
+              <span id="donate-link-text">10 € per PayPal spenden</span>
+            </a>
+            <p class="small donate-note">Bitte <strong>„An Freunde &amp; Familie senden“</strong> wählen, dann kommt alles an. Verwendungszweck: <code data-bind="spende-vz">Spende Sommerfest Malzkreis</code></p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -475,16 +508,10 @@
         </div>
         <nav class="footer-links">
           <a href="https://sommerfest-malzkreis.webflow.io/" target="_blank" rel="noopener" data-bind="sommerfest-link">Sommerfest</a>
+          <a href="#spenden">Spenden</a>
           <a data-bind="email-link" href="#">Kontakt</a>
-          <a href="#impressum">Impressum</a>
         </nav>
       </div>
-      <details class="impressum" id="impressum">
-        <summary>Impressum &amp; Datenschutz</summary>
-        <!-- TODO: Impressum ausfüllen (Name, Anschrift, Kontakt der verantwortlichen Person) -->
-        <p><strong>Verantwortlich:</strong> Ulmer Malzkreis, [Name], [Straße Hausnummer], [PLZ] Ulm · <a data-bind="email-link" href="#">E-Mail</a></p>
-        <p>Diese Seite ist ein privates, nicht-kommerzielles Angebot eines Stammtischs. Die im Bestellformular angegebenen Daten werden ausschließlich zur Abwicklung deiner Shirt-Bestellung verwendet und nach Abschluss gelöscht. Es werden keine Cookies gesetzt und keine Tracking-Dienste eingesetzt. Schriften werden von Google Fonts geladen; dabei wird deine IP-Adresse an Google übertragen. Die Zahlung erfolgt über PayPal; es gelten die Datenschutzbestimmungen von PayPal.</p>
-      </details>
     </div>
   </footer>
 

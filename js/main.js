@@ -381,6 +381,30 @@
     form.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
+  /* ---------- Spenden ---------- */
+  (function initDonate() {
+    const wrap = $("#donate-amounts"), link = $("#donate-link"), custom = $("#donate-custom");
+    if (!wrap || !link) return;
+    const cfg = C.spende || { betraege: [5, 10, 20, 50] };
+    const base = (C.paypalMe || "").replace(/\/+$/, "");
+    bind("spende-vz", cfg.verwendungszweck || "Spende");
+    let amount = cfg.betraege[1] || cfg.betraege[0];
+    const render = () => {
+      $$(".amount", wrap).forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.amount === amount && !custom.value)));
+      const a = custom.value ? Math.max(1, Math.min(5000, parseInt(custom.value, 10) || 0)) : amount;
+      link.href = a ? `${base}/${a}EUR` : base;
+      $("#donate-link-text").textContent = a ? `${fmtEur(a).replace(",00", "")} per PayPal spenden` : "Per PayPal spenden";
+    };
+    wrap.innerHTML = cfg.betraege.map((n) => `<button type="button" class="amount" data-amount="${n}">${n} €</button>`).join("");
+    wrap.addEventListener("click", (e) => {
+      const b = e.target.closest(".amount");
+      if (!b) return;
+      amount = +b.dataset.amount; custom.value = ""; render();
+    });
+    custom.addEventListener("input", render);
+    render();
+  })();
+
   applyConfig();
   addPosition();
 })();
