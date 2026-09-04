@@ -93,7 +93,10 @@ p:last-child { margin-bottom: 0; }
 .eyebrow-light { color: var(--mint); }
 .dot { width: .6rem; height: .6rem; border-radius: 50%; background: currentColor; flex: none; }
 
-/* Display-Headline im Hero */
+/* Hero-Headline */
+.hero-title { font-size: clamp(2.2rem, 4.8vw, 4rem); color: var(--green); margin-bottom: 1.5rem; }
+
+/* (Display-Varianten, aktuell ungenutzt) */
 .display { margin: 0 0 1.5rem; line-height: .92; }
 .display-line {
   display: block; font-family: var(--display); font-weight: 400; text-transform: uppercase;
