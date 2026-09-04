@@ -190,7 +190,7 @@ p:last-child { margin-bottom: 0; }
 .seal:hover { transform: scale(1.05); }
 .seal svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 22s linear infinite; }
 .seal-text { font-family: var(--font); font-weight: 700; font-size: 13px; letter-spacing: .08em; fill: currentColor; text-transform: uppercase; }
-.seal-center { font-family: var(--display); font-size: 1.6rem; letter-spacing: -.02em; }
+.seal-center { font-family: var(--display); font-size: 1.55rem; letter-spacing: -.03em; white-space: nowrap; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .hero-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem; }
@@ -423,7 +423,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
   .shirt-gallery { grid-template-columns: 1fr 1fr; gap: .75rem; }
   .hero-actions .button { width: 100%; }
   .seal { width: 108px; height: 108px; right: -.5rem; top: -1rem; }
-  .seal-center { font-size: 1.3rem; }
+  .seal-center { font-size: 1.25rem; }
   .hero-frame::before { inset: 1rem -.75rem -1rem 1rem; }
   .position { grid-template-columns: 1fr auto; }
   .position .field:first-child { grid-column: 1 / -1; }
