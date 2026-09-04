@@ -41,7 +41,8 @@
     bind("lieferung", s.lieferung || "nach der Produktion");
     if (s.bestellschluss) {
       bind("bestellschluss", fmtDate(s.bestellschluss));
-      bind("tag-bestellschluss", `Vorbestellung bis ${fmtDate(s.bestellschluss)} · Produktion im ${s.produktion || "November"}`);
+      const kurz = new Date(s.bestellschluss + "T12:00:00").toLocaleDateString("de-DE", { day: "numeric", month: "long" });
+      bind("tag-bestellschluss", `Vorbestellung bis ${kurz} · Produktion im ${(s.produktion || "November").replace(/\s*\d{4}$/, "")}`);
     } else {
       bind("bestellschluss", "Bestellschluss (wird noch bekannt gegeben)");
       bind("tag-bestellschluss", `Vorbestellung · Produktion im ${s.produktion || "November"}`);

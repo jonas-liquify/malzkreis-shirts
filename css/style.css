@@ -139,7 +139,7 @@ p:last-child { margin-bottom: 0; }
 }
 .navbar-inner { display: flex; align-items: center; justify-content: space-between; min-height: 74px; gap: 1rem; }
 .brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; font-size: 1.05rem; letter-spacing: -.01em; color: var(--green); }
-.brand-mark { width: 34px; height: 30px; color: var(--green); }
+.brand-mark { width: 34px; height: 30px; flex: none; color: var(--green); }
 .brand-text { font-weight: 400; color: var(--ink); white-space: nowrap; }
 .brand-text strong { font-weight: 700; }
 .nav-links { display: flex; align-items: center; gap: 1.6rem; font-weight: 500; font-size: .95rem; }
