@@ -47,7 +47,7 @@
       bind("tag-bestellschluss", `Vorbestellung · Produktion im ${s.produktion || "November"}`);
     }
 
-    if (!(s.versand > 0)) $("#lieferung-fieldset").hidden = true; // kein Versand → nur Abholung
+    if (!(s.versand > 0)) $("#lieferung-fieldset").hidden = true; // kein Versand → Übergabe wird persönlich geklärt
 
     // Farb-Chips in der Shirt-Sektion
     $("#shirt-colors").innerHTML = s.farben
@@ -204,7 +204,7 @@
       name: (fd.get("name") || "").trim(),
       email: (fd.get("email") || "").trim(),
       items, anzahl,
-      lieferung: versand ? "Versand" : "Abholung am Stammtisch",
+      lieferung: versand ? "Versand" : "Persönliche Übergabe (wird abgesprochen)",
       adresse: versand ? (fd.get("adresse") || "").trim() : "",
       bemerkung: (fd.get("bemerkung") || "").trim(),
       shirts, versand: versand ? C.shirt.versand : 0, total,
@@ -312,12 +312,14 @@
     return "mailto";
   }
 
+  const versandLabel = (o) => (o.versand ? "Versand" : "klären wir persönlich mit dir");
+
   function showSuccess(o, mode) {
     bind("success-name", o.name.split(" ")[0] || "du");
     bind("success-total", fmtEur(o.total));
     $("#success-summary").innerHTML = [
       ...o.items.map((it, i) => [i === 0 ? "Shirts" : "", itemLabel(it)]),
-      ["Lieferung", o.lieferung],
+      ["Übergabe", versandLabel(o)],
       o.adresse ? ["Adresse", o.adresse.replace(/\n/g, ", ")] : null,
       ["Gesamt", `<strong>${fmtEur(o.total)}</strong>`],
     ].filter(Boolean).map(([k, v]) => `<div><span>${esc(k)}</span><span>${k === "Gesamt" ? v : esc(v)}</span></div>`).join("");

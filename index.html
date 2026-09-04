@@ -50,8 +50,9 @@
             vorne ein dezentes <strong>ULMER</strong> auf der Brust, hinten Münster, Spatz und die Ansage
             <em>„Dear Barcelona, you can't win a race that ended in 1890.“</em>
             Der Erlös wandert komplett in die Kasse des <strong>Ulmer Malzkreis</strong> und refinanziert unser
-            Sommerfest – das für alle Gäste kostenlos war. Jetzt vorbestellen, produziert wird gesammelt im
-            <strong data-bind="produktion">November</strong>.
+            Sommerfest – das für alle Gäste kostenlos war. Vorbestellbar bis <strong data-bind="bestellschluss">15. November</strong>, produziert wird gesammelt im
+            <strong data-bind="produktion">November</strong> – rechtzeitig vor Weihnachten. Ein perfektes Geschenk für alle,
+            die wissen, wo der höchste Kirchturm steht.
           </p>
           <div class="hero-actions">
             <a href="#bestellen" class="button button-primary">Jetzt vorbestellen</a>
@@ -60,7 +61,7 @@
           <ul class="hero-facts">
             <li><strong data-bind="preis-kurz">30 €</strong> pro Shirt</li>
             <li>Bezahlung per <strong>PayPal</strong></li>
-            <li>Abholung am <strong>Stammtisch</strong></li>
+            <li>Perfektes <strong>Weihnachtsgeschenk</strong></li>
           </ul>
         </div>
         <div class="hero-visual">
@@ -144,7 +145,8 @@
               <li>Farbe Creme, Druck in Münster-Grün</li>
               <li>Unisex, Größen <span data-bind="groessen-liste">S – XXL</span></li>
               <li>Vorbestellung bis <span data-bind="bestellschluss">Bestellschluss</span>, Produktion im <span data-bind="produktion">November</span></li>
-              <li>Abholung am Stammtisch, alles Weitere klären wir persönlich</li>
+              <li>Übergabe klären wir persönlich mit dir</li>
+              <li>Kommt <span data-bind="lieferung">rechtzeitig vor Weihnachten</span> – perfekt als Geschenk</li>
               <li>Der Erlös refinanziert das Sommerfest</li>
             </ul>
             <div class="color-list" id="shirt-colors"></div>
@@ -152,7 +154,7 @@
             <p class="small text-muted">
               Das Shirt gibt es nur auf Vorbestellung: Wir sammeln bis zum <strong data-bind="bestellschluss">Bestellschluss</strong>,
               lassen im <strong data-bind="produktion">November</strong> gesammelt produzieren, und
-              <span data-bind="lieferung">Anfang Dezember</span> holst du dein Shirt am Stammtisch ab. Kein Lager, kein Risiko, kein Ausschuss.
+              <span data-bind="lieferung">rechtzeitig vor Weihnachten</span> hast du es in der Hand. Kein Lager, kein Risiko, kein Ausschuss.
             </p>
           </div>
         </div>
@@ -216,8 +218,8 @@
           </li>
           <li class="step">
             <div class="step-number">3</div>
-            <h3>Abholen &amp; anziehen</h3>
-            <p>Im <strong data-bind="produktion">November</strong> lassen wir alle vorbestellten Shirts produzieren. Sobald sie da sind, melden wir uns und du holst dein Shirt am Stammtisch ab. Wenn das nicht klappt, finden wir gemeinsam eine Lösung.</p>
+            <h3>Übergabe &amp; anziehen</h3>
+            <p>Im <strong data-bind="produktion">November</strong> lassen wir alle vorbestellten Shirts produzieren. Sobald sie da sind, melden wir uns bei dir und klären die Übergabe persönlich – <span data-bind="lieferung">rechtzeitig vor Weihnachten</span>.</p>
           </li>
         </ol>
       </div>
@@ -232,7 +234,7 @@
             <span>Bestellung</span>
           </div>
           <h2 class="heading-1">Shirt vorbestellen</h2>
-          <p class="lead">Fülle das Formular aus, danach geht's direkt weiter zu PayPal. Produziert wird im <strong data-bind="produktion">November</strong>, abgeholt wird am Stammtisch.</p>
+          <p class="lead">Fülle das Formular aus, danach geht's direkt weiter zu PayPal. Vorbestellbar bis <strong data-bind="bestellschluss">15. November</strong>, produziert wird im <strong data-bind="produktion">November</strong> – rechtzeitig für den Gabentisch.</p>
         </div>
 
         <form id="order-form" class="order-form" name="bestellung" method="POST" data-netlify="true" netlify-honeypot="website" novalidate>
@@ -286,7 +288,7 @@
             <div class="radio-group">
               <label class="radio">
                 <input type="radio" name="lieferung" value="abholung" checked>
-                <span><strong>Abholung am Stammtisch</strong><br><small>kostenlos, wir sagen dir Bescheid</small></span>
+                <span><strong>Persönliche Übergabe</strong><br><small>wir melden uns bei dir</small></span>
               </label>
               <label class="radio" id="versand-option">
                 <input type="radio" name="lieferung" value="versand">
@@ -302,7 +304,7 @@
 
           <div class="field">
             <label for="bemerkung">Bemerkung <span class="optional">(optional)</span></label>
-            <textarea id="bemerkung" name="bemerkung" rows="2" placeholder="z. B. „Kann nicht zum Stammtisch kommen“, Grüße an die Kasse …"></textarea>
+            <textarea id="bemerkung" name="bemerkung" rows="2" placeholder="z. B. Wunsch zur Übergabe, „ist ein Geschenk“, Grüße an die Kasse …"></textarea>
           </div>
 
           <label class="checkbox">
@@ -367,7 +369,7 @@
         <div class="faq">
           <details>
             <summary>Wann bekomme ich mein Shirt?</summary>
-            <p>Das Shirt ist eine Vorbestellung. Wir sammeln alle Bestellungen bis zum <strong data-bind="bestellschluss">Bestellschluss</strong> und lassen dann im <strong data-bind="produktion">November</strong> gesammelt produzieren. Voraussichtlich <strong data-bind="lieferung">Anfang Dezember</strong> sind sie da – wir melden uns dann per E-Mail zur Abholung.</p>
+            <p>Das Shirt ist eine Vorbestellung. Wir sammeln alle Bestellungen bis zum <strong data-bind="bestellschluss">Bestellschluss</strong> und lassen dann im <strong data-bind="produktion">November</strong> gesammelt produzieren. Sie kommen <strong data-bind="lieferung">rechtzeitig vor Weihnachten</strong> – wir melden uns dann per E-Mail wegen der Übergabe. Als Geschenk unter dem Baum funktioniert das Shirt also bestens.</p>
           </details>
           <details>
             <summary>Warum muss ich schon jetzt bezahlen?</summary>
@@ -378,8 +380,8 @@
             <p>Wir sind kein Unternehmen, sondern ein Stammtisch. Bei „Freunde &amp; Familie“ fallen keine PayPal-Gebühren an, und der volle Betrag landet in der Stammtischkasse. Dafür gibt es keinen PayPal-Käuferschutz – du vertraust uns, wir liefern. Versprochen.</p>
           </details>
           <details>
-            <summary>Gibt es auch Versand?</summary>
-            <p>Erstmal nicht. Die Shirts werden am Stammtisch abgeholt. Wenn du nicht vorbeikommen kannst, schreib es einfach ins Bemerkungsfeld – wir melden uns und finden eine Lösung.</p>
+            <summary>Wie bekomme ich mein Shirt?</summary>
+            <p>Sobald die Shirts da sind, melden wir uns per E-Mail und klären die Übergabe direkt mit dir – persönlich in Ulm oder, wenn nötig, per Post. Einen festen Versandprozess gibt es nicht, wir machen das kurz und unkompliziert aus.</p>
           </details>
           <details>
             <summary>Wie fällt das Shirt aus?</summary>

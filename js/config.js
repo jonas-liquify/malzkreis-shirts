@@ -26,7 +26,7 @@ window.SHOP_CONFIG = {
   shirt: {
     name: "Dear Barcelona – das Malzkreis-Shirt",
     preis: 30,                 // Euro pro Shirt
-    versand: 0,                // Euro Versandpauschale; 0 = kein Versand anbieten (Lieferung nur per Abholung)
+    versand: 0,                // Euro Versandpauschale; 0 = keine Versandoption im Formular (Übergabe wird persönlich geklärt)
     material: "Oversize-Schnitt, schwere Bio-Baumwolle, Siebdruck",
     groessen: ["S", "M", "L", "XL", "XXL"],
     farben: [
@@ -37,9 +37,9 @@ window.SHOP_CONFIG = {
     // Echte Mockup-Fotos: einfach unter diesen Pfaden ablegen, die Seite tauscht die
     // SVG-Vorschau dann automatisch gegen die Fotos aus.
     fotos: { front: "assets/shirt-front.jpg", back: "assets/shirt-back.jpg" },
-    bestellschluss: "2026-10-31",   // Ende der Vorbestellphase, ISO-Datum; leer lassen für "offen"
+    bestellschluss: "2026-11-15",   // Ende der Vorbestellphase, ISO-Datum; leer lassen für "offen"
     produktion: "November 2026",    // Wann die Shirts produziert werden (Text, frei formulierbar)
-    lieferung: "Anfang Dezember",   // Wann die Shirts voraussichtlich da sind (Text)
+    lieferung: "rechtzeitig vor Weihnachten",   // Wann die Shirts voraussichtlich da sind (Text)
   },
 
   // --- Bestell-Übermittlung ----------------------------------
