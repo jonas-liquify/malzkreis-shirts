@@ -5,14 +5,15 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
-  /* Headline-Schrift per URL testen: ?font=shrikhand | fraunces | righteous | yeseva | bagel | archivo */
+  /* Headline-Schrift per URL testen: ?font=archivo | dela | rubikmono | archivoblack | shrikhand | fraunces | righteous */
   const FONTS = {
-    shrikhand: { css: "Shrikhand", family: '"Shrikhand"', transform: "none", weight: 400, tracking: "0", scale: 1 },
-    fraunces:  { css: "Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,900,100,1", family: '"Fraunces"', transform: "none", weight: 900, tracking: "-.01em", scale: 1.05, italic: true },
-    righteous: { css: "Righteous", family: '"Righteous"', transform: "none", weight: 400, tracking: "0", scale: 1.02 },
-    yeseva:    { css: "Yeseva+One", family: '"Yeseva One"', transform: "none", weight: 400, tracking: "0", scale: 1.02 },
-    bagel:     { css: "Bagel+Fat+One", family: '"Bagel Fat One"', transform: "none", weight: 400, tracking: ".01em", scale: .96 },
-    archivo:   { css: "Archivo+Black", family: '"Archivo Black"', transform: "uppercase", weight: 400, tracking: "-.015em", scale: 1 },
+    archivo:      { css: "Archivo:wdth,wght@125,900", family: '"Archivo", "Archivo Black"', transform: "uppercase", weight: 900, tracking: "-.01em", scale: .92, stretch: "125%" },
+    dela:         { css: "Dela+Gothic+One", family: '"Dela Gothic One"', transform: "uppercase", weight: 400, tracking: "0", scale: .88, stretch: "100%" },
+    rubikmono:    { css: "Rubik+Mono+One", family: '"Rubik Mono One"', transform: "uppercase", weight: 400, tracking: "-.02em", scale: .82, stretch: "100%" },
+    archivoblack: { css: "Archivo+Black", family: '"Archivo Black"', transform: "uppercase", weight: 400, tracking: "-.015em", scale: 1, stretch: "100%" },
+    shrikhand:    { css: "Shrikhand", family: '"Shrikhand"', transform: "none", weight: 400, tracking: "0", scale: 1, stretch: "100%" },
+    fraunces:     { css: "Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,900,100,1", family: '"Fraunces"', transform: "none", weight: 900, tracking: "-.01em", scale: 1.05, stretch: "100%", italic: true },
+    righteous:    { css: "Righteous", family: '"Righteous"', transform: "none", weight: 400, tracking: "0", scale: 1.02, stretch: "100%" },
   };
   const want = new URLSearchParams(location.search).get("font");
   if (want && FONTS[want]) {
@@ -25,6 +26,7 @@
     r.setProperty("--display-weight", String(f.weight));
     r.setProperty("--display-tracking", f.tracking);
     r.setProperty("--display-scale", String(f.scale));
+    r.setProperty("--display-stretch", f.stretch || "100%");
     if (f.italic) document.documentElement.classList.add("display-italic");
   }
 
