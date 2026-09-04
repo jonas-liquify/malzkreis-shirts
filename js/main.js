@@ -9,9 +9,13 @@
     new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(n);
   const fmtDate = (iso) =>
     iso ? new Date(iso + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" }) : "";
+  const esc = (str) => String(str).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   const bind = (key, value, attr) =>
     $$(`[data-bind="${key}"]`).forEach((el) => (attr ? el.setAttribute(attr, value) : (el.textContent = value)));
+
+  const singleColor = C.shirt.farben.length === 1;
+  let currentColor = 0;
 
   /* ---------- Statische Texte aus der Config ---------- */
   function applyConfig() {
@@ -33,47 +37,33 @@
       if (a.textContent.trim() === "unsere Kassen-Adresse") a.textContent = st.email;
     });
 
+    bind("produktion", s.produktion || "November");
+    bind("lieferung", s.lieferung || "nach der Produktion");
     if (s.bestellschluss) {
       bind("bestellschluss", fmtDate(s.bestellschluss));
-      bind("tag-bestellschluss", `Bestellbar bis ${fmtDate(s.bestellschluss)}`);
+      bind("tag-bestellschluss", `Vorbestellung bis ${fmtDate(s.bestellschluss)} · Produktion im ${s.produktion || "November"}`);
     } else {
       bind("bestellschluss", "Bestellschluss (wird noch bekannt gegeben)");
+      bind("tag-bestellschluss", `Vorbestellung · Produktion im ${s.produktion || "November"}`);
     }
 
     if (!(s.versand > 0)) $("#versand-option").hidden = true;
 
-    // Selects füllen
-    const sizeSel = $("#groesse");
-    sizeSel.innerHTML = '<option value="" disabled selected>Bitte wählen</option>' +
-      s.groessen.map((g) => `<option value="${g}">${g}</option>`).join("");
-    const colorSel = $("#farbe");
-    colorSel.innerHTML = '<option value="" disabled selected>Bitte wählen</option>' +
-      s.farben.map((f) => `<option value="${f.name}">${f.name}</option>`).join("");
-
     // Farb-Chips in der Shirt-Sektion
     $("#shirt-colors").innerHTML = s.farben
-      .map((f) => `<span class="color-chip"><i style="background:${f.hex}"></i>${f.name}</span>`)
+      .map((f) => `<span class="color-chip"><i style="background:${f.hex}"></i>${esc(f.name)}</span>`)
       .join("");
+    $("#shirt-colors").hidden = singleColor;
 
     // Swatches im Hero (nur bei mehreren Farben)
     const sw = $("#hero-swatches");
-    const single = s.farben.length === 1;
-    sw.hidden = single;
-    $("#shirt-colors").hidden = single;
-    if (single) {
-      // Farbfeld ausblenden und automatisch setzen
-      $("#farbe-field").hidden = true;
-      colorSel.required = false;
-      colorSel.value = s.farben[0].name;
-      $("#variant-row").classList.remove("form-row-3");
-    }
+    sw.hidden = singleColor;
     sw.innerHTML = s.farben
-      .map((f, i) => `<button type="button" class="swatch" style="background:${f.hex}" title="${f.name}" aria-label="${f.name}" aria-pressed="${i === 0}" data-index="${i}"></button>`)
+      .map((f, i) => `<button type="button" class="swatch" style="background:${f.hex}" title="${esc(f.name)}" aria-label="${esc(f.name)}" aria-pressed="${i === 0}" data-index="${i}"></button>`)
       .join("");
     sw.addEventListener("click", (e) => {
       const b = e.target.closest(".swatch");
-      if (!b) return;
-      setShirtColor(+b.dataset.index);
+      if (b) setShirtColor(+b.dataset.index);
     });
 
     // SVG-Shirts rendern
@@ -98,11 +88,19 @@
       })
     );
 
-    // Echte Fotos einbinden, falls vorhanden
     loadPhotos();
   }
 
-  let currentColor = 0;
+  function setShirtColor(i) {
+    const f = C.shirt.farben[i];
+    if (!f) return;
+    currentColor = i;
+    $$(".shirt-stage, .shirt-photo-placeholder").forEach((el) => {
+      el.style.setProperty("--shirt", f.hex);
+      el.style.setProperty("--print", f.print);
+    });
+    $$("#hero-swatches .swatch").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.index === i)));
+  }
 
   function loadPhotos() {
     const fotos = C.shirt.fotos || {};
@@ -116,9 +114,9 @@
         });
         const stage = $("#hero-shirt");
         stage.dataset.photo = "1";
+        stage.classList.add("has-photo");
         if (stage.dataset.side === side) {
           stage.innerHTML = `<img src="${fotos[side]}" alt="Shirt ${side === "back" ? "Rückseite" : "Vorderseite"}">`;
-          stage.classList.add("has-photo");
         }
         $("#hero-swatches").hidden = true; // Fotos zeigen die echte Farbe
       };
@@ -126,19 +124,64 @@
     });
   }
 
-  function setShirtColor(i) {
-    const f = C.shirt.farben[i];
-    if (!f) return;
-    currentColor = i;
-    $$(".shirt-stage, .shirt-photo-placeholder").forEach((el) => {
-      el.style.setProperty("--shirt", f.hex);
-      el.style.setProperty("--print", f.print);
-    });
-    $$("#hero-swatches .swatch").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.index === i)));
-    const sel = $("#farbe");
-    if (sel && !sel.value) sel.value = f.name; // Vorbelegen, falls noch nichts gewählt
-    if (sel && sel.value !== f.name) sel.value = f.name;
+  /* ---------- Positionen (mehrere Größen) ---------- */
+  const positions = $("#positions");
+  const tpl = $("#position-template");
+
+  function addPosition(preset = {}) {
+    const node = tpl.content.firstElementChild.cloneNode(true);
+    const sizeSel = $('select[name="groesse[]"]', node);
+    sizeSel.innerHTML = '<option value="" disabled selected>Bitte wählen</option>' +
+      C.shirt.groessen.map((g) => `<option value="${esc(g)}">${esc(g)}</option>`).join("");
+    if (preset.groesse) sizeSel.value = preset.groesse;
+
+    const colorWrap = $(".position-color", node);
+    const colorSel = $('select[name="farbe[]"]', node);
+    colorSel.innerHTML = C.shirt.farben.map((f) => `<option value="${esc(f.name)}">${esc(f.name)}</option>`).join("");
+    if (singleColor) {
+      colorWrap.hidden = true;
+    } else {
+      colorSel.required = true;
+      colorSel.insertAdjacentHTML("afterbegin", '<option value="" disabled selected>Bitte wählen</option>');
+    }
+    if (preset.farbe) colorSel.value = preset.farbe;
+    if (preset.anzahl) $('input[name="anzahl[]"]', node).value = preset.anzahl;
+
+    positions.appendChild(node);
+    updateSummary();
+    return node;
   }
+
+  positions.classList.toggle("single-color", singleColor);
+
+  positions.addEventListener("click", (e) => {
+    const rm = e.target.closest(".remove-position");
+    if (rm) {
+      if (positions.children.length > 1) rm.closest(".position").remove();
+      updateSummary();
+      return;
+    }
+    const step = e.target.closest(".qty-btn");
+    if (step) {
+      const input = $("input", step.parentElement);
+      const v = Math.max(1, Math.min(20, (parseInt(input.value, 10) || 1) + +step.dataset.step));
+      input.value = v;
+      updateSummary();
+    }
+  });
+
+  positions.addEventListener("change", (e) => {
+    // Hero-Shirt in der gewählten Farbe zeigen
+    if (e.target.name === "farbe[]") {
+      const idx = C.shirt.farben.findIndex((f) => f.name === e.target.value);
+      if (idx >= 0) setShirtColor(idx);
+    }
+  });
+
+  $("#add-position").addEventListener("click", () => {
+    const node = addPosition();
+    $("select", node).focus();
+  });
 
   /* ---------- Formular ---------- */
   const form = $("#order-form");
@@ -147,16 +190,20 @@
 
   function readOrder() {
     const fd = new FormData(form);
-    const anzahl = Math.max(1, Math.min(20, parseInt(fd.get("anzahl"), 10) || 1));
+    const items = $$(".position", positions).map((row) => ({
+      groesse: $('select[name="groesse[]"]', row).value,
+      farbe: singleColor ? C.shirt.farben[0].name : $('select[name="farbe[]"]', row).value,
+      anzahl: Math.max(1, Math.min(20, parseInt($('input[name="anzahl[]"]', row).value, 10) || 1)),
+      row,
+    }));
+    const anzahl = items.reduce((n, it) => n + it.anzahl, 0);
     const versand = fd.get("lieferung") === "versand" && C.shirt.versand > 0;
     const shirts = anzahl * C.shirt.preis;
     const total = shirts + (versand ? C.shirt.versand : 0);
     return {
       name: (fd.get("name") || "").trim(),
       email: (fd.get("email") || "").trim(),
-      groesse: fd.get("groesse") || "",
-      farbe: fd.get("farbe") || "",
-      anzahl,
+      items, anzahl,
       lieferung: versand ? "Versand" : "Abholung am Stammtisch",
       adresse: versand ? (fd.get("adresse") || "").trim() : "",
       bemerkung: (fd.get("bemerkung") || "").trim(),
@@ -164,51 +211,58 @@
     };
   }
 
+  const itemLabel = (it) => `${it.anzahl} × ${it.groesse || "?"}${singleColor ? "" : ", " + (it.farbe || "?")}`;
+  const itemsShort = (o) => o.items.map((it) => `${it.anzahl}x ${it.groesse}${singleColor ? "" : " " + it.farbe}`).join(", ");
+
   function updateSummary() {
     const o = readOrder();
-    bind("sum-anzahl", String(o.anzahl));
-    bind("sum-shirts", fmtEur(o.shirts));
+    $("#sum-lines").innerHTML = o.items
+      .map((it) => {
+        const label = it.groesse ? `${itemLabel(it)} Shirt` : `${it.anzahl} × Shirt <span class="text-muted">(Größe wählen)</span>`;
+        return `<div class="summary-line"><span>${it.groesse ? esc(label) : label}</span><span>${fmtEur(it.anzahl * C.shirt.preis)}</span></div>`;
+      })
+      .join("");
     bind("sum-versand", fmtEur(o.versand));
     bind("sum-total", fmtEur(o.total));
     $("#sum-versand-row").hidden = !o.versand;
-    const adr = $("#adresse-field");
-    adr.hidden = !o.versand;
+    $("#adresse-field").hidden = !o.versand;
     $("#adresse").required = !!o.versand;
-    // Farb-Swatch im Hero mitziehen
-    const idx = C.shirt.farben.findIndex((f) => f.name === o.farbe);
-    if (idx >= 0) {
-      $$(".shirt-stage, .shirt-photo-placeholder").forEach((el) => {
-        el.style.setProperty("--shirt", C.shirt.farben[idx].hex);
-        el.style.setProperty("--print", C.shirt.farben[idx].print);
-      });
-      $$("#hero-swatches .swatch").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.index === idx)));
-    }
+    $("#positionen-hidden").value = itemsShort(o);
   }
 
   function validate(o) {
     const problems = [];
     $$(".is-invalid", form).forEach((el) => el.classList.remove("is-invalid"));
-    const mark = (id) => $(id).classList.add("is-invalid");
-    if (!o.name) { problems.push("Bitte gib deinen Namen an."); mark("#name"); }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(o.email)) { problems.push("Bitte gib eine gültige E-Mail-Adresse an."); mark("#email"); }
-    if (!o.groesse) { problems.push("Bitte wähle eine Größe."); mark("#groesse"); }
-    if (!o.farbe) { problems.push("Bitte wähle eine Farbe."); mark("#farbe"); }
-    if (o.lieferung === "Versand" && o.adresse.length < 8) { problems.push("Bitte gib eine Lieferadresse an."); mark("#adresse"); }
-    if (!$("#einverstaendnis").checked) problems.push("Bitte bestätige den Hinweis zur Bestellung.");
+    const mark = (el) => el && el.classList.add("is-invalid");
+    if (!o.name) { problems.push("Bitte gib deinen Namen an."); mark($("#name")); }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(o.email)) { problems.push("Bitte gib eine gültige E-Mail-Adresse an."); mark($("#email")); }
+    let missingSize = false, missingColor = false;
+    o.items.forEach((it) => {
+      if (!it.groesse) { missingSize = true; mark($('select[name="groesse[]"]', it.row)); }
+      if (!singleColor && !it.farbe) { missingColor = true; mark($('select[name="farbe[]"]', it.row)); }
+    });
+    if (missingSize) problems.push(o.items.length > 1 ? "Bitte wähle für jede Position eine Größe." : "Bitte wähle eine Größe.");
+    if (missingColor) problems.push("Bitte wähle für jede Position eine Farbe.");
+    if (o.lieferung === "Versand" && o.adresse.length < 8) { problems.push("Bitte gib eine Lieferadresse an."); mark($("#adresse")); }
+    if (!$("#einverstaendnis").checked) problems.push("Bitte bestätige den Hinweis zur Vorbestellung.");
     if (form.elements.website.value) problems.push("Spam-Schutz ausgelöst."); // Honeypot
     return problems;
   }
 
+  const verwendungszweck = (o) => `Shirt ${itemsShort(o)} – ${o.name}`;
+
   function orderText(o) {
     return [
-      `Neue Shirt-Bestellung – ${C.stammtisch.name}`,
+      `Neue Shirt-Vorbestellung – ${C.stammtisch.name}`,
       ``,
       `Name:       ${o.name}`,
       `E-Mail:     ${o.email}`,
       `Shirt:      ${C.shirt.name}`,
-      `Größe:      ${o.groesse}`,
-      `Farbe:      ${o.farbe}`,
-      `Anzahl:     ${o.anzahl}`,
+      ``,
+      `Positionen:`,
+      ...o.items.map((it) => `  - ${itemLabel(it)}`),
+      `  = ${o.anzahl} Shirt${o.anzahl === 1 ? "" : "s"} gesamt`,
+      ``,
       `Lieferung:  ${o.lieferung}`,
       o.adresse ? `Adresse:    ${o.adresse.replace(/\n/g, ", ")}` : null,
       o.bemerkung ? `Bemerkung:  ${o.bemerkung}` : null,
@@ -221,21 +275,26 @@
     ].filter((l) => l !== null).join("\n");
   }
 
-  const verwendungszweck = (o) => `Shirt ${o.anzahl}x ${o.groesse} ${o.farbe} – ${o.name}`;
-
   function paypalUrl(o) {
     const base = (C.paypalMe || "").replace(/\/+$/, "");
-    const amount = o.total.toFixed(2);
-    return `${base}/${amount}EUR`;
+    return `${base}/${o.total.toFixed(2)}EUR`;
   }
 
   async function submitOrder(o) {
     const mode = C.orderMode;
+    const payload = {
+      name: o.name, email: o.email, shirt: C.shirt.name,
+      positionen: o.items.map(({ groesse, farbe, anzahl }) => ({ groesse, farbe, anzahl })),
+      positionenText: itemsShort(o), anzahl: o.anzahl,
+      lieferung: o.lieferung, adresse: o.adresse, bemerkung: o.bemerkung,
+      shirts: o.shirts, versand: o.versand, gesamt: o.total,
+      verwendungszweck: verwendungszweck(o), zeitpunkt: new Date().toISOString(),
+    };
     if (mode === "webhook" && C.orderWebhook) {
       const res = await fetch(C.orderWebhook, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...o, shirt: C.shirt.name, verwendungszweck: verwendungszweck(o), zeitpunkt: new Date().toISOString() }),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(`Webhook antwortete mit ${res.status}`);
       return "webhook";
@@ -248,9 +307,8 @@
       return "netlify";
     }
     // Fallback: mailto
-    const subject = `Shirt-Bestellung: ${o.anzahl}x ${o.groesse} ${o.farbe} – ${o.name}`;
-    const href = `mailto:${encodeURIComponent(C.stammtisch.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText(o))}`;
-    window.location.href = href;
+    const subject = `Shirt-Vorbestellung: ${itemsShort(o)} – ${o.name}`;
+    window.location.href = `mailto:${encodeURIComponent(C.stammtisch.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText(o))}`;
     return "mailto";
   }
 
@@ -258,11 +316,11 @@
     bind("success-name", o.name.split(" ")[0] || "du");
     bind("success-total", fmtEur(o.total));
     $("#success-summary").innerHTML = [
-      ["Shirt", `${o.anzahl} × ${o.groesse}, ${o.farbe}`],
+      ...o.items.map((it, i) => [i === 0 ? "Shirts" : "", itemLabel(it)]),
       ["Lieferung", o.lieferung],
       o.adresse ? ["Adresse", o.adresse.replace(/\n/g, ", ")] : null,
       ["Gesamt", `<strong>${fmtEur(o.total)}</strong>`],
-    ].filter(Boolean).map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join("");
+    ].filter(Boolean).map(([k, v]) => `<div><span>${esc(k)}</span><span>${k === "Gesamt" ? v : esc(v)}</span></div>`).join("");
     $("#paypal-link").href = paypalUrl(o);
     $("#verwendungszweck").textContent = verwendungszweck(o);
     $("#mailto-hint").hidden = mode !== "mailto";
@@ -279,7 +337,7 @@
     const o = readOrder();
     const problems = validate(o);
     if (problems.length) {
-      errBox.innerHTML = problems.map((p) => `<div>${p}</div>`).join("");
+      errBox.innerHTML = problems.map((p) => `<div>${esc(p)}</div>`).join("");
       errBox.hidden = false;
       errBox.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
@@ -303,9 +361,8 @@
   });
 
   $("#copy-vz").addEventListener("click", async (e) => {
-    const txt = $("#verwendungszweck").textContent;
     try {
-      await navigator.clipboard.writeText(txt);
+      await navigator.clipboard.writeText($("#verwendungszweck").textContent);
       e.target.textContent = "Kopiert ✓";
       setTimeout(() => (e.target.textContent = "Kopieren"), 1800);
     } catch { /* Clipboard nicht verfügbar */ }
@@ -313,6 +370,8 @@
 
   $("#order-again").addEventListener("click", () => {
     form.reset();
+    positions.innerHTML = "";
+    addPosition();
     success.hidden = true;
     form.hidden = false;
     updateSummary();
@@ -320,6 +379,5 @@
   });
 
   applyConfig();
-  if (C.shirt.farben.length > 1) $("#farbe").value = ""; // Farbe erst wählen lassen
-  updateSummary();
+  addPosition();
 })();

@@ -13,7 +13,7 @@ window.SHOP_CONFIG = {
     gruendung: 2024,
     mitglieder: "11,5",
     bierverbrauch: "692 l",
-    email: "kasse@malzkreis.de",                 // TODO: echte Adresse (Bestellmails & Kontakt)
+    email: "jonas.schaeuffelens@icloud.com",  // Bestellmails & Kontakt
     sommerfestUrl: "https://sommerfest-malzkreis.webflow.io/",
   },
 
@@ -25,7 +25,7 @@ window.SHOP_CONFIG = {
   // --- Shirt --------------------------------------------------
   shirt: {
     name: "Dear Barcelona – das Malzkreis-Shirt",
-    preis: 25,                 // Euro pro Shirt
+    preis: 30,                 // Euro pro Shirt
     versand: 4.9,              // Euro Versandpauschale (0 = kein Versand anbieten)
     material: "Oversize-Schnitt, schwere Bio-Baumwolle, Siebdruck",
     groessen: ["S", "M", "L", "XL", "XXL"],
@@ -37,7 +37,9 @@ window.SHOP_CONFIG = {
     // Echte Mockup-Fotos: einfach unter diesen Pfaden ablegen, die Seite tauscht die
     // SVG-Vorschau dann automatisch gegen die Fotos aus.
     fotos: { front: "assets/shirt-front.jpg", back: "assets/shirt-back.jpg" },
-    bestellschluss: "2026-10-15",   // ISO-Datum; leer lassen für "offen"
+    bestellschluss: "2026-10-31",   // Ende der Vorbestellphase, ISO-Datum; leer lassen für "offen"
+    produktion: "November 2026",    // Wann die Shirts produziert werden (Text, frei formulierbar)
+    lieferung: "Anfang Dezember",   // Wann die Shirts voraussichtlich da sind (Text)
   },
 
   // --- Bestell-Übermittlung ----------------------------------
