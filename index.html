@@ -8,7 +8,8 @@
   <meta property="og:title" content="161,53 Meter Stolz. Jetzt auch zum Anziehen.">
   <meta property="og:description" content="Dear Barcelona, you can't win a race that ended in 1890. Das Shirt des Ulmer Malzkreis jetzt vorbestellen – der Erlös refinanziert das Sommerfest.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/shirt-back.jpg">
+  <meta property="og:image" content="https://jonas-liquify.github.io/malzkreis-shirts/assets/shirt-back.jpg">
+  <meta name="theme-color" content="#f4eddc">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,11 +18,35 @@
 </head>
 <body>
 
+  <!-- Münster-Linienzeichnung als wiederverwendbares Symbol -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="muenster" viewBox="128 156 154 136">
+      <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M226 168 L226 160 M222 164 L230 164"/>
+        <path d="M226 168 L214 204 M226 168 L238 204"/>
+        <path d="M217 196 L235 196 M219 188 L233 188 M221 180 L231 180"/>
+        <path d="M211 204 L241 204 L241 288 L211 288 Z"/>
+        <path d="M211 204 L207 210 L207 288 M241 204 L245 210 L245 288"/>
+        <path d="M219 214 v18 a7 7 0 0 1 14 0 v-18 M219 232 h14"/>
+        <path d="M219 248 v16 a7 7 0 0 1 14 0 v-16"/>
+        <path d="M222 272 v16 M230 272 v16"/>
+        <path d="M207 214 L213 204 M245 214 L239 204"/>
+        <path d="M254 210 c-6 -6 -2 -14 6 -12 c2 -5 9 -4 10 1 c5 0 6 3 4 4 l-4 1 c1 6 -5 11 -12 9 c-3 3 -6 2 -6 0 Z" stroke-width="1.8"/>
+        <path d="M272 201 l5 -1 M258 213 l-4 4 M260 213 l-1 5" stroke-width="1.8"/>
+        <path d="M150 226 L150 219 M147 222 L153 222 M150 226 L142 250 M150 226 L158 250 M141 250 L159 250 L159 288 L141 288 Z M146 262 v10 a4 4 0 0 1 8 0 v-10"/>
+        <path d="M176 230 L176 223 M173 226 L179 226 M176 230 L169 252 M176 230 L183 252 M168 252 L184 252 L184 288 L168 288 Z M172 264 v10 a4 4 0 0 1 8 0 v-10"/>
+        <path d="M159 262 L207 256 M159 268 L207 262 M184 262 L184 288 M159 288 L207 288"/>
+        <path d="M163 288 v-12 a3 3 0 0 1 6 0 v12 M172 288 v-12 a3 3 0 0 1 6 0 v12 M189 288 v-12 a3 3 0 0 1 6 0 v12 M198 288 v-12 a3 3 0 0 1 6 0 v12"/>
+        <path d="M134 288 L262 288 M134 284 L141 270 M262 284 L250 270"/>
+      </g>
+    </symbol>
+  </svg>
+
   <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="container navbar-inner">
       <a href="#top" class="brand" aria-label="Ulmer Malzkreis">
-        <span class="brand-dot" aria-hidden="true"></span>
+        <svg class="brand-mark" aria-hidden="true"><use href="#muenster"/></svg>
         <span class="brand-text">Ulmer <strong>Malzkreis</strong></span>
       </a>
       <nav class="nav-links">
@@ -29,7 +54,7 @@
         <a href="#story">Die Story</a>
         <a href="#ablauf">So geht's</a>
         <a href="#faq">FAQ</a>
-        <a href="#bestellen" class="button button-small">Jetzt vorbestellen</a>
+        <a href="#bestellen" class="button button-primary button-small">Jetzt vorbestellen</a>
       </nav>
     </div>
   </header>
@@ -38,34 +63,50 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero">
+      <svg class="hero-watermark" aria-hidden="true"><use href="#muenster"/></svg>
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="tag">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">
             <span class="dot" aria-hidden="true"></span>
             <span data-bind="tag-bestellschluss">Vorbestellung – Produktion im November</span>
           </div>
-          <h1 class="heading-1">161,53 Meter Stolz.<br>Jetzt auch zum Anziehen.</h1>
+          <h1 class="display">
+            <span class="display-line">161,53 m</span>
+            <span class="display-line display-outline">Stolz.</span>
+            <span class="display-sub">Jetzt auch zum Anziehen.</span>
+          </h1>
           <p class="lead">
             Barcelona baut noch – Ulm war 1890 fertig. Unser Shirt sagt das freundlich, aber deutlich:
             vorne ein dezentes <strong>ULMER</strong> auf der Brust, hinten Münster, Spatz und die Ansage
             <em>„Dear Barcelona, you can't win a race that ended in 1890.“</em>
+          </p>
+          <p class="lead lead-secondary">
             Der Erlös wandert komplett in die Kasse des <strong>Ulmer Malzkreis</strong> und refinanziert unser
-            Sommerfest – das für alle Gäste kostenlos war. Vorbestellbar bis <strong data-bind="bestellschluss">15. November</strong>, produziert wird gesammelt im
-            <strong data-bind="produktion">November</strong> – rechtzeitig vor Weihnachten. Ein perfektes Geschenk für alle,
-            die wissen, wo der höchste Kirchturm steht.
+            Sommerfest. Vorbestellbar bis <strong data-bind="bestellschluss">15. November</strong>, produziert im
+            <strong data-bind="produktion">November</strong> – rechtzeitig vor Weihnachten.
           </p>
           <div class="hero-actions">
-            <a href="#bestellen" class="button button-primary">Jetzt vorbestellen</a>
-            <a href="#shirt" class="button button-link">Shirt anschauen <span aria-hidden="true">→</span></a>
+            <a href="#bestellen" class="button button-primary button-large">Jetzt vorbestellen <span class="button-price" data-bind="preis-kurz">30 €</span></a>
+            <a href="#shirt" class="button button-ghost">Shirt anschauen</a>
           </div>
           <ul class="hero-facts">
-            <li><strong data-bind="preis-kurz">30 €</strong> pro Shirt</li>
-            <li>Bezahlung per <strong>PayPal</strong></li>
-            <li>Perfektes <strong>Weihnachtsgeschenk</strong></li>
+            <li>Oversize-Fit, Creme</li>
+            <li>Bezahlung per PayPal</li>
+            <li>Perfektes Weihnachtsgeschenk</li>
           </ul>
         </div>
-        <div class="hero-visual">
-          <div class="shirt-stage" id="hero-shirt" data-side="back"></div>
+
+        <div class="hero-visual reveal reveal-delay">
+          <div class="hero-frame">
+            <div class="shirt-stage" id="hero-shirt" data-side="back"></div>
+            <a href="#bestellen" class="seal" aria-label="Jetzt vorbestellen">
+              <svg viewBox="0 0 200 200" aria-hidden="true">
+                <defs><path id="seal-circle" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
+                <text class="seal-text" textLength="446" lengthAdjust="spacing"><textPath href="#seal-circle" textLength="446" lengthAdjust="spacing" data-bind="seal-text">VORBESTELLUNG · BIS 15. NOVEMBER · ULMER MALZKREIS · </textPath></text>
+              </svg>
+              <span class="seal-center">1890</span>
+            </a>
+          </div>
           <div class="hero-controls">
             <div class="shirt-side-toggle" role="group" aria-label="Vorder- oder Rückseite">
               <button type="button" data-side="front" aria-pressed="false">Vorne</button>
@@ -77,21 +118,35 @@
       </div>
     </section>
 
+    <!-- ===== LAUFBAND ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Dear Barcelona, you can't win a race that ended in 1890</span><i>✦</i>
+        <span>Ulmer Malzkreis</span><i>✦</i>
+        <span>161,53 Meter</span><i>✦</i>
+        <span>Der höchste Kirchturm der Welt</span><i>✦</i>
+        <span>Dear Barcelona, you can't win a race that ended in 1890</span><i>✦</i>
+        <span>Ulmer Malzkreis</span><i>✦</i>
+        <span>161,53 Meter</span><i>✦</i>
+        <span>Der höchste Kirchturm der Welt</span><i>✦</i>
+      </div>
+    </div>
+
     <!-- ===== WER WIR SIND ===== -->
-    <section class="section section-dark" id="malzkreis">
+    <section class="section section-green" id="malzkreis">
       <div class="container">
-        <div class="tag tag-light">
+        <div class="eyebrow eyebrow-light reveal">
           <span class="dot" aria-hidden="true"></span>
           <span>Wer steckt dahinter?</span>
         </div>
-        <h2 class="heading-2">
-          Wir sind der <span class="text-pink">Ulmer Malzkreis</span> – ein Stammtisch aus
+        <h2 class="heading-2 reveal">
+          Wir sind der <span class="text-accent">Ulmer Malzkreis</span> – ein Stammtisch aus
           bierbegeisterten Menschen, die sich regelmäßig treffen, um gemeinsam zu philosophieren,
           zu lachen und das ein oder andere Glas zu heben.
         </h2>
-        <div class="big-numbers">
+        <div class="big-numbers reveal">
           <div class="big-number">
-            <div class="big-number-value" data-bind="mitglieder">11,5</div>
+            <div class="big-number-value" data-bind="mitglieder" data-count>11,5</div>
             <div class="big-number-label">Mitglieder</div>
           </div>
           <div class="big-number">
@@ -99,11 +154,11 @@
             <div class="big-number-label">Gründung</div>
           </div>
           <div class="big-number">
-            <div class="big-number-value" data-bind="bierverbrauch">692 l</div>
+            <div class="big-number-value" data-bind="bierverbrauch" data-count>692 l</div>
             <div class="big-number-label">Bierverbrauch seit Gründung</div>
           </div>
         </div>
-        <p class="text-muted">
+        <p class="text-soft reveal">
           Du warst auf unserem <a href="https://sommerfest-malzkreis.webflow.io/" target="_blank" rel="noopener" data-bind="sommerfest-link">Sommerfest</a>?
           Dann weißt du: Bei uns war alles kostenlos – außer der Durst. Essen, Getränke, Musik haben wir aus der
           Stammtischkasse bezahlt. Mit dem Shirt füllst du sie wieder auf, damit es auch nächstes Jahr ein
@@ -115,8 +170,8 @@
     <!-- ===== DAS SHIRT ===== -->
     <section class="section" id="shirt">
       <div class="container">
-        <div class="section-header">
-          <div class="tag">
+        <div class="section-header reveal">
+          <div class="eyebrow">
             <span class="dot" aria-hidden="true"></span>
             <span>Das Shirt</span>
           </div>
@@ -124,18 +179,18 @@
         </div>
 
         <div class="shirt-grid">
-          <div class="shirt-gallery">
+          <div class="shirt-gallery reveal">
             <figure class="shirt-card">
               <div class="shirt-photo shirt-photo-placeholder" data-side="front"></div>
-              <figcaption>Vorne: dezentes „ULMER“ auf der Brust</figcaption>
+              <figcaption><b>Vorne</b> Dezentes „ULMER“ auf der Brust</figcaption>
             </figure>
             <figure class="shirt-card">
               <div class="shirt-photo shirt-photo-placeholder" data-side="back"></div>
-              <figcaption>Hinten: Münster, Spatz &amp; die Ansage nach Barcelona</figcaption>
+              <figcaption><b>Hinten</b> Münster, Spatz &amp; die Ansage nach Barcelona</figcaption>
             </figure>
           </div>
 
-          <div class="shirt-details">
+          <aside class="shirt-details reveal reveal-delay">
             <div class="price-block">
               <div class="price" data-bind="preis">30 €</div>
               <div class="price-note">inkl. MwSt.<span data-bind="versand-note"></span></div>
@@ -150,13 +205,13 @@
               <li>Der Erlös refinanziert das Sommerfest</li>
             </ul>
             <div class="color-list" id="shirt-colors"></div>
-            <a href="#bestellen" class="button button-primary button-block">Jetzt vorbestellen</a>
+            <a href="#bestellen" class="button button-primary button-block button-large">Jetzt vorbestellen</a>
             <p class="small text-muted">
               Das Shirt gibt es nur auf Vorbestellung: Wir sammeln bis zum <strong data-bind="bestellschluss">Bestellschluss</strong>,
               lassen im <strong data-bind="produktion">November</strong> gesammelt produzieren, und
               <span data-bind="lieferung">rechtzeitig vor Weihnachten</span> hast du es in der Hand. Kein Lager, kein Risiko, kein Ausschuss.
             </p>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -164,18 +219,19 @@
     <!-- ===== DIE STORY ===== -->
     <section class="section section-cream" id="story">
       <div class="container">
-        <div class="section-header">
-          <div class="tag">
-            <span class="dot" aria-hidden="true"></span>
-            <span>Die Story hinter dem Motiv</span>
+        <div class="story-grid">
+          <div class="story-poster reveal">
+            <p class="poster-small">Dear Barcelona,</p>
+            <p class="poster-big">You can't win a race that ended in</p>
+            <p class="poster-year">1890</p>
+            <svg class="poster-muenster" aria-hidden="true"><use href="#muenster"/></svg>
           </div>
-          <h2 class="heading-1">Warum Barcelona?</h2>
-        </div>
-        <div class="story">
-          <div>
-            <p class="quote"><small>Dear Barcelona,</small>You can't win a race that ended in 1890.</p>
-          </div>
-          <div>
+          <div class="story-text reveal reveal-delay">
+            <div class="eyebrow">
+              <span class="dot" aria-hidden="true"></span>
+              <span>Die Story hinter dem Motiv</span>
+            </div>
+            <h2 class="heading-1">Warum Barcelona?</h2>
             <h3 class="heading-3">161,53 Meter. Seit 1890. Unangefochten.</h3>
             <p>
               Das Ulmer Münster hat den höchsten Kirchturm der Welt – fertiggestellt 1890, nach über
@@ -196,28 +252,28 @@
     </section>
 
     <!-- ===== SO GEHT'S ===== -->
-    <section class="section section-tint" id="ablauf">
+    <section class="section" id="ablauf">
       <div class="container">
-        <div class="section-header">
-          <div class="tag">
+        <div class="section-header reveal">
+          <div class="eyebrow">
             <span class="dot" aria-hidden="true"></span>
             <span>So funktioniert's</span>
           </div>
           <h2 class="heading-1">In drei Schritten zum Shirt</h2>
         </div>
         <ol class="steps">
-          <li class="step">
-            <div class="step-number">1</div>
+          <li class="step reveal">
+            <div class="step-number">01</div>
             <h3>Vorbestellen</h3>
             <p>Formular ausfüllen: Größe und Anzahl. Dauert eine Minute, kein Konto nötig. Vorbestellung möglich bis <strong data-bind="bestellschluss">Bestellschluss</strong>.</p>
           </li>
-          <li class="step">
-            <div class="step-number">2</div>
+          <li class="step reveal reveal-delay">
+            <div class="step-number">02</div>
             <h3>Per PayPal bezahlen</h3>
             <p>Nach dem Absenden bekommst du einen PayPal-Link mit deinem Betrag. Bitte <strong>„An Freunde &amp; Familie senden“</strong> wählen und deinen Namen als Hinweis eintragen.</p>
           </li>
-          <li class="step">
-            <div class="step-number">3</div>
+          <li class="step reveal reveal-delay-2">
+            <div class="step-number">03</div>
             <h3>Übergabe &amp; anziehen</h3>
             <p>Im <strong data-bind="produktion">November</strong> lassen wir alle vorbestellten Shirts produzieren. Sobald sie da sind, melden wir uns bei dir und klären die Übergabe persönlich – <span data-bind="lieferung">rechtzeitig vor Weihnachten</span>.</p>
           </li>
@@ -226,10 +282,10 @@
     </section>
 
     <!-- ===== BESTELLFORMULAR ===== -->
-    <section class="section" id="bestellen">
+    <section class="section section-green section-order" id="bestellen">
       <div class="container container-narrow">
-        <div class="section-header">
-          <div class="tag">
+        <div class="section-header reveal">
+          <div class="eyebrow eyebrow-light">
             <span class="dot" aria-hidden="true"></span>
             <span>Bestellung</span>
           </div>
@@ -237,7 +293,7 @@
           <p class="lead">Fülle das Formular aus, danach geht's direkt weiter zu PayPal. Vorbestellbar bis <strong data-bind="bestellschluss">15. November</strong>, produziert wird im <strong data-bind="produktion">November</strong> – rechtzeitig für den Gabentisch.</p>
         </div>
 
-        <form id="order-form" class="order-form" name="bestellung" method="POST" data-netlify="true" netlify-honeypot="website" novalidate>
+        <form id="order-form" class="order-form reveal" name="bestellung" method="POST" data-netlify="true" netlify-honeypot="website" novalidate>
           <input type="hidden" name="form-name" value="bestellung">
           <p class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
 
@@ -315,7 +371,7 @@
           <div class="summary">
             <div id="sum-lines"></div>
             <div class="summary-row" id="sum-versand-row" hidden><span>Versand</span><span data-bind="sum-versand">4,90 €</span></div>
-            <div class="summary-row summary-total"><span>Gesamt</span><span data-bind="sum-total">25,00 €</span></div>
+            <div class="summary-row summary-total"><span>Gesamt</span><span data-bind="sum-total">30,00 €</span></div>
           </div>
 
           <div class="form-error" id="form-error" role="alert" hidden></div>
@@ -335,7 +391,7 @@
           <div class="success-summary" id="success-summary"></div>
 
           <a id="paypal-link" class="button button-paypal button-block button-large" href="#" target="_blank" rel="noopener">
-            <span data-bind="success-total">25,00 €</span> per PayPal senden
+            <span data-bind="success-total">30,00 €</span> per PayPal senden
           </a>
 
           <div class="success-hints">
@@ -351,22 +407,22 @@
             Falls sich dein Mailprogramm nicht geöffnet hat: Schick uns die Bestellung bitte kurz an
             <a data-bind="email-link" href="#">unsere Kassen-Adresse</a>.
           </p>
-          <button type="button" class="button button-link" id="order-again">Noch ein Shirt vorbestellen</button>
+          <button type="button" class="button button-ghost" id="order-again">Noch ein Shirt vorbestellen</button>
         </div>
       </div>
     </section>
 
     <!-- ===== FAQ ===== -->
-    <section class="section section-tint" id="faq">
+    <section class="section" id="faq">
       <div class="container container-narrow">
-        <div class="section-header">
-          <div class="tag">
+        <div class="section-header reveal">
+          <div class="eyebrow">
             <span class="dot" aria-hidden="true"></span>
             <span>Fragen &amp; Antworten</span>
           </div>
           <h2 class="heading-1">Noch Fragen?</h2>
         </div>
-        <div class="faq">
+        <div class="faq reveal">
           <details>
             <summary>Wann bekomme ich mein Shirt?</summary>
             <p>Das Shirt ist eine Vorbestellung. Wir sammeln alle Bestellungen bis zum <strong data-bind="bestellschluss">Bestellschluss</strong> und lassen dann im <strong data-bind="produktion">November</strong> gesammelt produzieren. Sie kommen <strong data-bind="lieferung">rechtzeitig vor Weihnachten</strong> – wir melden uns dann per E-Mail wegen der Übergabe. Als Geschenk unter dem Baum funktioniert das Shirt also bestens.</p>
@@ -385,7 +441,7 @@
           </details>
           <details>
             <summary>Wie fällt das Shirt aus?</summary>
-            <p>Bewusst oversize und boxy geschnitten, so wie auf den Bildern. Wenn du es eher normal tragen willst, nimm eine Größe kleiner als sonst. Bei Unsicherheit einfach am Stammtisch anprobieren.</p>
+            <p>Bewusst oversize und boxy geschnitten, so wie auf den Bildern. Wenn du es eher normal tragen willst, nimm eine Größe kleiner als sonst.</p>
           </details>
           <details>
             <summary>Kann ich mehrere Shirts in verschiedenen Größen bestellen?</summary>
@@ -411,21 +467,18 @@
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <div class="container footer-inner">
-      <div>
-        <div class="brand">
-          <span class="brand-dot" aria-hidden="true"></span>
-          <span class="brand-text">Ulmer <strong>Malzkreis</strong></span>
-        </div>
-        <p class="small text-muted">Ein Stammtisch aus Ulm. Seit 2024. Für gute Gesellschaft und gutes Bier.</p>
-      </div>
-      <nav class="footer-links">
-        <a href="https://sommerfest-malzkreis.webflow.io/" target="_blank" rel="noopener" data-bind="sommerfest-link">Sommerfest</a>
-        <a data-bind="email-link" href="#">Kontakt</a>
-        <a href="#impressum">Impressum</a>
-      </nav>
-    </div>
     <div class="container">
+      <div class="footer-wordmark" aria-hidden="true">Ulmer Malzkreis</div>
+      <div class="footer-inner">
+        <div>
+          <p class="footer-claim">Ein Stammtisch aus Ulm. Seit 2024.<br>Für gute Gesellschaft und gutes Bier.</p>
+        </div>
+        <nav class="footer-links">
+          <a href="https://sommerfest-malzkreis.webflow.io/" target="_blank" rel="noopener" data-bind="sommerfest-link">Sommerfest</a>
+          <a data-bind="email-link" href="#">Kontakt</a>
+          <a href="#impressum">Impressum</a>
+        </nav>
+      </div>
       <details class="impressum" id="impressum">
         <summary>Impressum &amp; Datenschutz</summary>
         <!-- TODO: Impressum ausfüllen (Name, Anschrift, Kontakt der verantwortlichen Person) -->
@@ -435,8 +488,15 @@
     </div>
   </footer>
 
+  <!-- Mobile Sticky-Leiste -->
+  <div class="sticky-cta" id="sticky-cta" hidden>
+    <div class="sticky-cta-text"><strong data-bind="preis-kurz">30 €</strong> · Vorbestellung bis <span data-bind="bestellschluss-kurz">15. Nov</span></div>
+    <a href="#bestellen" class="button button-primary button-small">Jetzt vorbestellen</a>
+  </div>
+
   <script src="js/config.js"></script>
   <script src="js/shirt.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/ui.js"></script>
 </body>
 </html>
