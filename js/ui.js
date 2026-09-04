@@ -5,6 +5,29 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
+  /* Headline-Schrift per URL testen: ?font=shrikhand | fraunces | righteous | yeseva | bagel | archivo */
+  const FONTS = {
+    shrikhand: { css: "Shrikhand", family: '"Shrikhand"', transform: "none", weight: 400, tracking: "0", scale: 1 },
+    fraunces:  { css: "Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,900,100,1", family: '"Fraunces"', transform: "none", weight: 900, tracking: "-.01em", scale: 1.05, italic: true },
+    righteous: { css: "Righteous", family: '"Righteous"', transform: "none", weight: 400, tracking: "0", scale: 1.02 },
+    yeseva:    { css: "Yeseva+One", family: '"Yeseva One"', transform: "none", weight: 400, tracking: "0", scale: 1.02 },
+    bagel:     { css: "Bagel+Fat+One", family: '"Bagel Fat One"', transform: "none", weight: 400, tracking: ".01em", scale: .96 },
+    archivo:   { css: "Archivo+Black", family: '"Archivo Black"', transform: "uppercase", weight: 400, tracking: "-.015em", scale: 1 },
+  };
+  const want = new URLSearchParams(location.search).get("font");
+  if (want && FONTS[want]) {
+    const f = FONTS[want];
+    const link = document.getElementById("display-font");
+    if (link) link.href = `https://fonts.googleapis.com/css2?family=${f.css}&display=swap`;
+    const r = document.documentElement.style;
+    r.setProperty("--display", `${f.family}, "Poppins", system-ui, sans-serif`);
+    r.setProperty("--display-transform", f.transform);
+    r.setProperty("--display-weight", String(f.weight));
+    r.setProperty("--display-tracking", f.tracking);
+    r.setProperty("--display-scale", String(f.scale));
+    if (f.italic) document.documentElement.classList.add("display-italic");
+  }
+
   /* Siegel-Text und Kurzdatum aus der Config */
   const short = C.shirt.bestellschluss
     ? new Date(C.shirt.bestellschluss + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "short" }).replace(".", "").replace(/\s/, ". ")
