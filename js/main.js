@@ -47,7 +47,7 @@
       bind("tag-bestellschluss", `Vorbestellung · Produktion im ${s.produktion || "November"}`);
     }
 
-    if (!(s.versand > 0)) $("#versand-option").hidden = true;
+    if (!(s.versand > 0)) $("#lieferung-fieldset").hidden = true; // kein Versand → nur Abholung
 
     // Farb-Chips in der Shirt-Sektion
     $("#shirt-colors").innerHTML = s.farben

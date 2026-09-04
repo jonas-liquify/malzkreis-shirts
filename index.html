@@ -60,7 +60,7 @@
           <ul class="hero-facts">
             <li><strong data-bind="preis-kurz">30 €</strong> pro Shirt</li>
             <li>Bezahlung per <strong>PayPal</strong></li>
-            <li>Lieferung <strong data-bind="lieferung">nach der Produktion</strong></li>
+            <li>Abholung am <strong>Stammtisch</strong></li>
           </ul>
         </div>
         <div class="hero-visual">
@@ -144,15 +144,15 @@
               <li>Farbe Creme, Druck in Münster-Grün</li>
               <li>Unisex, Größen <span data-bind="groessen-liste">S – XXL</span></li>
               <li>Vorbestellung bis <span data-bind="bestellschluss">Bestellschluss</span>, Produktion im <span data-bind="produktion">November</span></li>
-              <li>Abholung am Stammtisch kostenlos, Versand möglich</li>
+              <li>Abholung am Stammtisch, alles Weitere klären wir persönlich</li>
               <li>Der Erlös refinanziert das Sommerfest</li>
             </ul>
             <div class="color-list" id="shirt-colors"></div>
             <a href="#bestellen" class="button button-primary button-block">Jetzt vorbestellen</a>
             <p class="small text-muted">
               Das Shirt gibt es nur auf Vorbestellung: Wir sammeln bis zum <strong data-bind="bestellschluss">Bestellschluss</strong>,
-              lassen im <strong data-bind="produktion">November</strong> gesammelt produzieren und liefern
-              <span data-bind="lieferung">danach</span>. Kein Lager, kein Risiko, kein Ausschuss.
+              lassen im <strong data-bind="produktion">November</strong> gesammelt produzieren, und
+              <span data-bind="lieferung">Anfang Dezember</span> holst du dein Shirt am Stammtisch ab. Kein Lager, kein Risiko, kein Ausschuss.
             </p>
           </div>
         </div>
@@ -217,7 +217,7 @@
           <li class="step">
             <div class="step-number">3</div>
             <h3>Abholen &amp; anziehen</h3>
-            <p>Im <strong data-bind="produktion">November</strong> lassen wir alle vorbestellten Shirts produzieren. Sobald sie da sind, melden wir uns – Abholung am Stammtisch oder per Post zu dir nach Hause.</p>
+            <p>Im <strong data-bind="produktion">November</strong> lassen wir alle vorbestellten Shirts produzieren. Sobald sie da sind, melden wir uns und du holst dein Shirt am Stammtisch ab. Wenn das nicht klappt, finden wir gemeinsam eine Lösung.</p>
           </li>
         </ol>
       </div>
@@ -232,7 +232,7 @@
             <span>Bestellung</span>
           </div>
           <h2 class="heading-1">Shirt vorbestellen</h2>
-          <p class="lead">Fülle das Formular aus, danach geht's direkt weiter zu PayPal. Produziert wird im <strong data-bind="produktion">November</strong>, geliefert <span data-bind="lieferung">danach</span>.</p>
+          <p class="lead">Fülle das Formular aus, danach geht's direkt weiter zu PayPal. Produziert wird im <strong data-bind="produktion">November</strong>, abgeholt wird am Stammtisch.</p>
         </div>
 
         <form id="order-form" class="order-form" name="bestellung" method="POST" data-netlify="true" netlify-honeypot="website" novalidate>
@@ -302,7 +302,7 @@
 
           <div class="field">
             <label for="bemerkung">Bemerkung <span class="optional">(optional)</span></label>
-            <textarea id="bemerkung" name="bemerkung" rows="2" placeholder="z. B. Wunsch-Abholtermin, Grüße an die Kasse …"></textarea>
+            <textarea id="bemerkung" name="bemerkung" rows="2" placeholder="z. B. „Kann nicht zum Stammtisch kommen“, Grüße an die Kasse …"></textarea>
           </div>
 
           <label class="checkbox">
@@ -367,7 +367,7 @@
         <div class="faq">
           <details>
             <summary>Wann bekomme ich mein Shirt?</summary>
-            <p>Das Shirt ist eine Vorbestellung. Wir sammeln alle Bestellungen bis zum <strong data-bind="bestellschluss">Bestellschluss</strong> und lassen dann im <strong data-bind="produktion">November</strong> gesammelt produzieren. Voraussichtliche Lieferung: <strong data-bind="lieferung">Anfang Dezember</strong>. Wir melden uns per E-Mail, sobald die Shirts da sind.</p>
+            <p>Das Shirt ist eine Vorbestellung. Wir sammeln alle Bestellungen bis zum <strong data-bind="bestellschluss">Bestellschluss</strong> und lassen dann im <strong data-bind="produktion">November</strong> gesammelt produzieren. Voraussichtlich <strong data-bind="lieferung">Anfang Dezember</strong> sind sie da – wir melden uns dann per E-Mail zur Abholung.</p>
           </details>
           <details>
             <summary>Warum muss ich schon jetzt bezahlen?</summary>
@@ -376,6 +376,10 @@
           <details>
             <summary>Warum „Freunde &amp; Familie“ bei PayPal?</summary>
             <p>Wir sind kein Unternehmen, sondern ein Stammtisch. Bei „Freunde &amp; Familie“ fallen keine PayPal-Gebühren an, und der volle Betrag landet in der Stammtischkasse. Dafür gibt es keinen PayPal-Käuferschutz – du vertraust uns, wir liefern. Versprochen.</p>
+          </details>
+          <details>
+            <summary>Gibt es auch Versand?</summary>
+            <p>Erstmal nicht. Die Shirts werden am Stammtisch abgeholt. Wenn du nicht vorbeikommen kannst, schreib es einfach ins Bemerkungsfeld – wir melden uns und finden eine Lösung.</p>
           </details>
           <details>
             <summary>Wie fällt das Shirt aus?</summary>
