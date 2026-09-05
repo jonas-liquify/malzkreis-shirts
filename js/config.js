@@ -31,7 +31,7 @@ window.SHOP_CONFIG = {
   // --- Shirt --------------------------------------------------
   shirt: {
     name: "Dear Barcelona – das Malzkreis-Shirt",
-    preis: 30,                 // Euro pro Shirt
+    preis: 35,                 // Euro pro Shirt
     versand: 0,                // Euro Versandpauschale; 0 = keine Versandoption im Formular (Übergabe wird persönlich geklärt)
     material: "Oversize-Schnitt, schwere Bio-Baumwolle, Siebdruck",
     groessen: ["S", "M", "L", "XL", "XXL"],
