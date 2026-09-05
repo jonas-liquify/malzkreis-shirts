@@ -76,18 +76,32 @@
     $$("[data-count]").forEach((el) => io2.observe(el));
   }
 
-  /* Mobile Sticky-Leiste: sichtbar nach dem Hero, versteckt im Bestellbereich */
+  /* Mobile Sticky-Leiste: sichtbar nach dem Hero, weg sobald die Spendenkarte im Bild ist
+     oder das Bestellformular erreicht wurde (ab dort dauerhaft aus). */
   const bar = document.getElementById("sticky-cta");
   const hero = document.querySelector(".hero");
-  const order = document.querySelector("#bestellen .container");
+  const order = document.getElementById("bestellen");
   const donate = document.querySelector(".donate-card");
-  if (bar && hero && order && "IntersectionObserver" in window) {
+  if (bar && hero && order) {
     bar.hidden = false;
-    let pastHero = false, inOrder = false, inDonate = false;
-    const update = () => bar.classList.toggle("visible", pastHero && !inOrder && !inDonate);
-    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.bottom < 0; update(); }, { threshold: 0 }).observe(hero);
-    // Leiste ausblenden, sobald Bestell- oder Spendenbereich irgendwo im Sichtfeld ist
-    new IntersectionObserver(([e]) => { inOrder = e.isIntersecting; update(); }, { threshold: 0 }).observe(order);
-    if (donate) new IntersectionObserver(([e]) => { inDonate = e.isIntersecting; update(); }, { threshold: 0 }).observe(donate);
+    let inDonate = false;
+    const update = () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const orderTop = order.getBoundingClientRect().top;
+      const pastHero = heroBottom < 0;
+      const beforeOrder = orderTop > window.innerHeight;   // Formular noch nicht im Sichtfeld
+      bar.classList.toggle("visible", pastHero && beforeOrder && !inDonate);
+    };
+    if ("IntersectionObserver" in window && donate) {
+      new IntersectionObserver(([e]) => { inDonate = e.isIntersecting; update(); }, { threshold: 0 }).observe(donate);
+    }
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { update(); ticking = false; });
+    }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
   }
 })();
