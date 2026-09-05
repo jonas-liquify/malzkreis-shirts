@@ -90,11 +90,15 @@
       const heroBottom = hero.getBoundingClientRect().bottom;
       const orderTop = order.getBoundingClientRect().top;
       const pastHero = heroBottom < 0;
-      const beforeOrder = orderTop > vh();   // Bestellbereich noch nicht im Sichtfeld → ab dort dauerhaft aus
+      const beforeOrder = orderTop > vh();   // Bestellbereich noch nicht im Sichtfeld → ab dort aus
+      bar.classList.toggle("reached-order", !beforeOrder);
       bar.classList.toggle("visible", pastHero && beforeOrder && !inDonate);
     };
-    if ("IntersectionObserver" in window && donate) {
-      new IntersectionObserver(([e]) => { inDonate = e.isIntersecting; update(); }, { threshold: 0 }).observe(donate);
+    if ("IntersectionObserver" in window) {
+      if (donate) new IntersectionObserver(([e]) => { inDonate = e.isIntersecting; update(); }, { threshold: 0 }).observe(donate);
+      // Zweiter Weg, unabhängig von Scroll-Events: sobald der Bestellbereich den Viewport berührt
+      // oder darüber hinaus gescrollt ist, Leiste hart ausblenden.
+      new IntersectionObserver(() => update(), { threshold: 0 }).observe(order);
     }
     let ticking = false;
     window.addEventListener("scroll", () => {
