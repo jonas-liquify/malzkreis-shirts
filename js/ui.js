@@ -79,14 +79,15 @@
   /* Mobile Sticky-Leiste: sichtbar nach dem Hero, versteckt im Bestellbereich */
   const bar = document.getElementById("sticky-cta");
   const hero = document.querySelector(".hero");
-  const order = document.getElementById("bestellen");
-  const donate = document.getElementById("spenden");
+  const order = document.querySelector("#bestellen .container");
+  const donate = document.querySelector(".donate-card");
   if (bar && hero && order && "IntersectionObserver" in window) {
     bar.hidden = false;
     let pastHero = false, inOrder = false, inDonate = false;
     const update = () => bar.classList.toggle("visible", pastHero && !inOrder && !inDonate);
     new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.bottom < 0; update(); }, { threshold: 0 }).observe(hero);
-    new IntersectionObserver(([e]) => { inOrder = e.isIntersecting; update(); }, { threshold: 0.05 }).observe(order);
-    if (donate) new IntersectionObserver(([e]) => { inDonate = e.isIntersecting; update(); }, { threshold: 0.2 }).observe(donate);
+    // Leiste ausblenden, sobald Bestell- oder Spendenbereich irgendwo im Sichtfeld ist
+    new IntersectionObserver(([e]) => { inOrder = e.isIntersecting; update(); }, { threshold: 0 }).observe(order);
+    if (donate) new IntersectionObserver(([e]) => { inDonate = e.isIntersecting; update(); }, { threshold: 0 }).observe(donate);
   }
 })();
