@@ -85,11 +85,12 @@
   if (bar && hero && order) {
     bar.hidden = false;
     let inDonate = false;
+    const vh = () => (window.visualViewport ? window.visualViewport.height : window.innerHeight);
     const update = () => {
       const heroBottom = hero.getBoundingClientRect().bottom;
       const orderTop = order.getBoundingClientRect().top;
       const pastHero = heroBottom < 0;
-      const beforeOrder = orderTop > window.innerHeight;   // Formular noch nicht im Sichtfeld
+      const beforeOrder = orderTop > vh();   // Bestellbereich noch nicht im Sichtfeld → ab dort dauerhaft aus
       bar.classList.toggle("visible", pastHero && beforeOrder && !inDonate);
     };
     if ("IntersectionObserver" in window && donate) {
@@ -102,6 +103,13 @@
       requestAnimationFrame(() => { update(); ticking = false; });
     }, { passive: true });
     window.addEventListener("resize", update);
+    window.addEventListener("scrollend", update);
+    window.addEventListener("touchend", () => setTimeout(update, 50), { passive: true });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("scroll", update);
+      window.visualViewport.addEventListener("resize", update);
+    }
+    setInterval(update, 800);   // Sicherheitsnetz für Browser, die Scroll-Events verzögert liefern
     update();
   }
 })();

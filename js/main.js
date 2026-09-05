@@ -347,9 +347,10 @@
     }
     errBox.hidden = true;
     const btn = $("#submit-btn");
+    const mainLabel = $(".button-main", btn);
     btn.disabled = true;
-    const label = btn.textContent;
-    btn.textContent = "Wird gesendet …";
+    const label = mainLabel.textContent;
+    mainLabel.textContent = "Wird gesendet …";
     try {
       const mode = await submitOrder(o);
       showSuccess(o, mode);
@@ -359,7 +360,7 @@
       errBox.hidden = false;
     } finally {
       btn.disabled = false;
-      btn.textContent = label;
+      mainLabel.textContent = label;
     }
   });
 
