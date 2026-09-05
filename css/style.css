@@ -139,6 +139,8 @@ p:last-child { margin-bottom: 0; }
 .button-block { width: 100%; white-space: normal; text-align: center; }
 .button-price { background: rgba(244,237,220,.18); padding: .15rem .6rem; border-radius: 999px; font-size: .85em; }
 .button-paypal { background: var(--paypal); border-color: var(--paypal); color: #fff; }
+.button-stacked { flex-direction: column; gap: .1rem; line-height: 1.15; padding-top: .85rem; padding-bottom: .85rem; }
+.button-sub { font-size: .72rem; font-weight: 500; letter-spacing: .04em; opacity: .85; text-transform: uppercase; }
 .button-paypal:hover { background: var(--paypal-dark); border-color: var(--paypal-dark); }
 .button:disabled { opacity: .6; cursor: progress; transform: none; box-shadow: none; }
 

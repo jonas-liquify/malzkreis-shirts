@@ -393,7 +393,7 @@
       $$(".amount", wrap).forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.amount === amount && !custom.value)));
       const a = custom.value ? Math.max(1, Math.min(5000, parseInt(custom.value, 10) || 0)) : amount;
       link.href = a ? `${base}/${a}EUR` : base;
-      $("#donate-link-text").textContent = a ? `${fmtEur(a).replace(",00", "")} per PayPal spenden` : "Per PayPal spenden";
+      $("#donate-link-text").textContent = a ? `${fmtEur(a).replace(",00", "")} spenden` : "Spenden";
     };
     wrap.innerHTML = cfg.betraege.map((n) => `<button type="button" class="amount" data-amount="${n}">${n} €</button>`).join("");
     wrap.addEventListener("click", (e) => {
