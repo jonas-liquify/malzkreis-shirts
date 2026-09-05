@@ -188,8 +188,9 @@
               <span>oder eigener Betrag</span>
               <span class="donate-input"><input type="number" id="donate-custom" min="1" max="5000" step="1" inputmode="numeric" placeholder="z. B. 15"><b>€</b></span>
             </label>
-            <a id="donate-link" class="button button-paypal button-block button-large" href="#" target="_blank" rel="noopener">
-              <span id="donate-link-text">10 € per PayPal spenden</span>
+            <a id="donate-link" class="button button-paypal button-block button-large button-stacked" href="#" target="_blank" rel="noopener">
+              <span id="donate-link-text">10 € spenden</span>
+              <span class="button-sub">mit PayPal</span>
             </a>
             <p class="small donate-note">Bitte <strong>„An Freunde &amp; Familie senden“</strong> wählen, dann kommt alles an. Verwendungszweck: <code data-bind="spende-vz">Spende Sommerfest Malzkreis</code></p>
           </div>
@@ -420,8 +421,9 @@
 
           <div class="success-summary" id="success-summary"></div>
 
-          <a id="paypal-link" class="button button-paypal button-block button-large" href="#" target="_blank" rel="noopener">
-            <span data-bind="success-total">30,00 €</span> per PayPal senden
+          <a id="paypal-link" class="button button-paypal button-block button-large button-stacked" href="#" target="_blank" rel="noopener">
+            <span><span data-bind="success-total">30,00 €</span> senden</span>
+            <span class="button-sub">mit PayPal · Freunde &amp; Familie</span>
           </a>
 
           <div class="success-hints">
