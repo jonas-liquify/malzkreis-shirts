@@ -401,21 +401,28 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
 .footer-links a:hover { opacity: 1; color: var(--mint); }
 
 /* ---------- Sticky-CTA (mobil) ---------- */
+/* Das Dock ist so hoch wie der sichtbare Viewport (dvh folgt Safaris ein-/ausklappender Leiste),
+   die Leiste sitzt an seinem unteren Rand. Dadurch bleibt ihre Position beim Scrollen konsistent. */
+.sticky-dock {
+  position: fixed; left: 0; right: 0; top: 0; height: 100vh; height: 100dvh; z-index: 60;
+  display: flex; align-items: flex-end; justify-content: center; pointer-events: none;
+  padding: 0 .75rem calc(.75rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
 .sticky-cta {
-  position: fixed; left: .75rem; right: .75rem; z-index: 60;
-  bottom: calc(.75rem + env(safe-area-inset-bottom, 0px));
+  pointer-events: auto; width: 100%;
   display: flex; align-items: center; justify-content: space-between; gap: .75rem;
   background: rgba(20, 20, 15, .92); color: var(--cream); border-radius: 999px; padding: .5rem .5rem .5rem 1.1rem;
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 12px 30px rgba(0,0,0,.25);
-  transform: translateY(120%); transition: transform .3s ease;
+  transform: translateY(140%); transition: transform .3s ease;
 }
 .sticky-cta.visible { transform: translateY(0); }
 .sticky-cta-text { font-size: .85rem; line-height: 1.3; }
 .sticky-cta .button { border-color: var(--green); }
-@media (min-width: 761px) { .sticky-cta { display: none; } }
-/* iOS Safari: die schwebende Tab-Leiste überlagert den unteren Rand, Leiste höher setzen */
+@media (min-width: 761px) { .sticky-dock { display: none; } }
+/* iOS Safari: die schwebende Adress-Pille liegt im Viewport, Leiste darüber setzen */
 @supports (-webkit-touch-callout: none) {
-  .sticky-cta { bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px)); }
+  .sticky-dock { padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px)); }
 }
 
 /* ---------- Scroll-Reveal ---------- */
