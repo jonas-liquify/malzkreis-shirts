@@ -256,6 +256,8 @@
     return [
       `Neue Shirt-Vorbestellung – ${C.stammtisch.name}`,
       ``,
+      `Hinweis: Nachdem du deine Bestellung per E-Mail abgeschickt hast, kehre wieder zur Webseite zurück, um deine PayPal-Zahlung abzuschließen.`,
+      ``,
       `Name:       ${o.name}`,
       `E-Mail:     ${o.email}`,
       `Shirt:      ${C.shirt.name}`,
