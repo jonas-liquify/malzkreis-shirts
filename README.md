@@ -13,7 +13,6 @@ Alles Wichtige steht in **`js/config.js`**:
 | PayPal.me-Link | `paypalMe` – ohne Betrag, z. B. `https://paypal.me/ulmermalzkreis` |
 | Preis, Versand, Größen, Farben, Bestellschluss, Produktions- und Liefertermin | `shirt` |
 | E-Mail für Bestellungen & Kontakt | `stammtisch.email` |
-| Spenden-Schnellbeträge und Verwendungszweck | `spende` |
 | Kennzahlen (Mitglieder, Gründung, Bier) | `stammtisch` |
 
 Weitere Stellen, die noch ausgefüllt werden sollten (mit `TODO` markiert):
