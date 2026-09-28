@@ -76,15 +76,12 @@
     $$("[data-count]").forEach((el) => io2.observe(el));
   }
 
-  /* Mobile Sticky-Leiste: sichtbar nach dem Hero, weg sobald die Spendenkarte im Bild ist
-     oder das Bestellformular erreicht wurde (ab dort dauerhaft aus). */
+  /* Mobile Sticky-Leiste: sichtbar nach dem Hero, weg sobald das Bestellformular erreicht wurde (ab dort dauerhaft aus). */
   const bar = document.getElementById("sticky-cta");
   const hero = document.querySelector(".hero");
   const order = document.getElementById("bestellen");
-  const donate = document.querySelector(".donate-card");
   if (bar && hero && order) {
     bar.hidden = false;
-    let inDonate = false;
     const vh = () => (window.visualViewport ? window.visualViewport.height : window.innerHeight);
     const update = () => {
       const heroBottom = hero.getBoundingClientRect().bottom;
@@ -92,10 +89,9 @@
       const pastHero = heroBottom < 0;
       const beforeOrder = orderTop > vh();   // Bestellbereich noch nicht im Sichtfeld → ab dort aus
       bar.classList.toggle("reached-order", !beforeOrder);
-      bar.classList.toggle("visible", pastHero && beforeOrder && !inDonate);
+      bar.classList.toggle("visible", pastHero && beforeOrder);
     };
     if ("IntersectionObserver" in window) {
-      if (donate) new IntersectionObserver(([e]) => { inDonate = e.isIntersecting; update(); }, { threshold: 0 }).observe(donate);
       // Zweiter Weg, unabhängig von Scroll-Events: sobald der Bestellbereich den Viewport berührt
       // oder darüber hinaus gescrollt ist, Leiste hart ausblenden.
       new IntersectionObserver(() => update(), { threshold: 0 }).observe(order);
