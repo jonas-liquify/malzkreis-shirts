@@ -1,12 +1,12 @@
 // Baut die statische Seite nach dist/ und setzt den Cache-Buster (?v=dev → Commit-SHA).
 // Läuft automatisch vor jedem `wrangler deploy` (siehe "build" in wrangler.jsonc).
-import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { join } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
 const out = join(root, "dist");
-const files = ["index.html", "css", "js", "assets"];
+const files = ["index.html", "shop", "css", "js", "assets"];
 
 function version() {
   // Workers Builds, GitHub Actions oder lokales Git – sonst Zeitstempel
@@ -21,8 +21,10 @@ mkdirSync(out, { recursive: true });
 for (const f of files) cpSync(join(root, f), join(out, f), { recursive: true });
 
 const v = version();
-const htmlPath = join(out, "index.html");
-const html = readFileSync(htmlPath, "utf8").replaceAll("?v=dev", `?v=${v}`);
-writeFileSync(htmlPath, html);
+const htmlFiles = readdirSync(out, { recursive: true }).filter((f) => f.endsWith(".html"));
+for (const f of htmlFiles) {
+  const path = join(out, f);
+  writeFileSync(path, readFileSync(path, "utf8").replaceAll("?v=dev", `?v=${v}`));
+}
 
-console.log(`Build fertig: dist/ (Version ${v})`);
+console.log(`Build fertig: dist/ (Version ${v}, ${htmlFiles.length} Seiten)`);

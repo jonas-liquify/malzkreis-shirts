@@ -28,7 +28,7 @@ jobs:
         with:
           enablement: true   # aktiviert Pages beim ersten Lauf automatisch
       - name: Cache-Buster setzen (?v=dev → Commit-SHA)
-        run: sed -i "s/?v=dev/?v=${GITHUB_SHA::8}/g" index.html
+        run: find . -name "*.html" -not -path "./node_modules/*" -exec sed -i "s/?v=dev/?v=${GITHUB_SHA::8}/g" {} +
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

@@ -15,6 +15,9 @@
     $$(`[data-bind="${key}"]`).forEach((el) => (attr ? el.setAttribute(attr, value) : (el.textContent = value)));
 
   const singleColor = C.shirt.farben.length === 1;
+  // Seiten in Unterordnern setzen <html data-root="../../">, damit Bildpfade aus der Config stimmen
+  const ROOT = document.documentElement.dataset.root || "";
+  const foto = (side) => ROOT + C.shirt.fotos[side];
   let currentColor = 0;
 
   /* ---------- Statische Texte aus der Config ---------- */
@@ -80,7 +83,7 @@
         const stage = $("#hero-shirt");
         stage.dataset.side = side;
         if (stage.dataset.photo) {
-          stage.innerHTML = `<img src="${s.fotos[side]}" alt="Shirt ${side === "back" ? "Rückseite" : "Vorderseite"}">`;
+          stage.innerHTML = `<img src="${foto(side)}" alt="Shirt ${side === "back" ? "Rückseite" : "Vorderseite"}">`;
         } else {
           stage.innerHTML = window.shirtSVG(side);
           setShirtColor(currentColor);
@@ -111,17 +114,17 @@
       img.onload = () => {
         $$(`.shirt-photo-placeholder[data-side="${side}"]`).forEach((el) => {
           el.classList.remove("shirt-photo-placeholder");
-          el.innerHTML = `<img src="${fotos[side]}" alt="Shirt ${side === "back" ? "Rückseite" : "Vorderseite"}">`;
+          el.innerHTML = `<img src="${foto(side)}" alt="Shirt ${side === "back" ? "Rückseite" : "Vorderseite"}">`;
         });
         const stage = $("#hero-shirt");
         stage.dataset.photo = "1";
         stage.classList.add("has-photo");
         if (stage.dataset.side === side) {
-          stage.innerHTML = `<img src="${fotos[side]}" alt="Shirt ${side === "back" ? "Rückseite" : "Vorderseite"}">`;
+          stage.innerHTML = `<img src="${foto(side)}" alt="Shirt ${side === "back" ? "Rückseite" : "Vorderseite"}">`;
         }
         $("#hero-swatches").hidden = true; // Fotos zeigen die echte Farbe
       };
-      img.src = fotos[side];
+      img.src = foto(side);
     });
   }
 
