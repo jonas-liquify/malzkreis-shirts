@@ -37,20 +37,48 @@ Weitere Stellen, die noch ausgefüllt werden sollten (mit `TODO` markiert):
 Nach dem Absenden bekommt der Besteller den PayPal-Link mit dem exakten Betrag
 (`paypal.me/NAME/25.00EUR`) sowie einen Verwendungszweck zum Kopieren.
 
-## Hosting
+## Hosting: Cloudflare Workers unter malzkreis.de
 
-Die Seite wird automatisch per GitHub Pages veröffentlicht:
+Die Seite läuft als Cloudflare Worker mit Static Assets.
 
-**https://jonas-liquify.github.io/malzkreis-shirts/**
+| Datei | Zweck |
+|---|---|
+| `wrangler.jsonc` | Worker-Konfiguration, Custom Domains `malzkreis.de` und `www.malzkreis.de` |
+| `src/worker.js` | Leitet `www` auf die Hauptdomain um, setzt Sicherheits- und Cache-Header |
+| `scripts/build.mjs` | Kopiert die Seite nach `dist/` und setzt den Cache-Buster (`?v=dev` → Commit-SHA) |
 
-Jeder Push auf `main` löst den Workflow `.github/workflows/pages.yml` aus, der die Seite neu
-deployt (beim ersten Lauf wird GitHub Pages automatisch aktiviert). Eine eigene Domain ist nicht
-nötig; falls doch, kann sie später unter *Settings → Pages* eingetragen werden.
+`wrangler deploy` baut automatisch vorher (`"build"` in `wrangler.jsonc`).
 
-Reine statische Seite (HTML, CSS, JS), läuft genauso auf Netlify, Vercel oder jedem Webspace.
-Lokal testen:
+### Einmalige Einrichtung
+
+1. **Domain in Cloudflare aufnehmen**: Im Cloudflare-Dashboard *Domain hinzufügen* → `malzkreis.de`,
+   Free-Plan wählen. Cloudflare zeigt zwei Nameserver an.
+2. **Nameserver beim Registrar umstellen** auf die beiden Cloudflare-Nameserver. Sobald die Zone
+   in Cloudflare als *aktiv* angezeigt wird, kann es weitergehen (meist Minuten, selten bis 24 h).
+   Vorhandene DNS-Einträge für `malzkreis.de` und `www` vorher löschen, sonst kann Cloudflare die
+   Custom Domains nicht anlegen. E-Mail-Einträge (MX) bleiben stehen.
+3. **Repo verbinden**: *Workers & Pages* → *Erstellen* → *Repository importieren* →
+   `jonas-liquify/malzkreis-shirts`. Einstellungen:
+   - Projektname: `malzkreis-shirts`
+   - Build-Befehl: leer lassen
+   - Deploy-Befehl: `npx wrangler deploy` (Standard)
+   - Produktions-Branch: `main`
+4. Der erste Build deployt den Worker und legt DNS-Einträge und SSL-Zertifikate für
+   `malzkreis.de` und `www.malzkreis.de` automatisch an.
+
+Ab dann deployt jeder Push auf `main` automatisch. Vor der DNS-Umstellung ist der Worker unter
+`https://malzkreis-shirts.<account>.workers.dev` erreichbar.
+
+### Lokal entwickeln
 
 ```bash
-python3 -m http.server 8080
-# → http://localhost:8080
+npm install
+npm run dev      # Worker lokal unter http://localhost:8787
+npm run check    # Probe-Deploy ohne Upload
 ```
+
+### Übergang von GitHub Pages
+
+Bis die Domain umgezogen ist, veröffentlicht `.github/workflows/pages.yml` die Seite weiterhin unter
+https://jonas-liquify.github.io/malzkreis-shirts/. Sobald `malzkreis.de` läuft, kann der Workflow
+gelöscht und GitHub Pages unter *Settings → Pages* deaktiviert werden.

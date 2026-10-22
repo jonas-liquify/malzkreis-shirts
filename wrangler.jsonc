@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "malzkreis-shirts",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-22",
+
+  // Baut die Seite nach dist/ (inkl. Cache-Buster), bevor deployt wird
+  "build": { "command": "npm run build" },
+
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Worker läuft vor jeder Anfrage: www-Weiterleitung und Header
+    "run_worker_first": true
+  },
+
+  // Eigene Domain. Voraussetzung: malzkreis.de ist als Zone in Cloudflare aktiv
+  // (Nameserver beim Registrar auf Cloudflare umgestellt). DNS und SSL legt Cloudflare dann selbst an.
+  "routes": [
+    { "pattern": "malzkreis.de", "custom_domain": true },
+    { "pattern": "www.malzkreis.de", "custom_domain": true }
+  ],
+
+  // Vorschau-Adresse *.workers.dev bleibt aktiv, damit man vor der DNS-Umstellung testen kann
+  "workers_dev": true,
+
+  "observability": { "enabled": true }
+}
