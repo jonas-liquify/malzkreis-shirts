@@ -1,8 +1,12 @@
-# Ulmer Malzkreis – Shirt-Shop
+# Ulmer Malzkreis – Website & Malzkreis Collection
 
-One-Pager, über den der Stammtisch sein Shirt bewirbt und Vorbestellungen entgegennimmt
-(Produktion gesammelt im November).
-Bezahlt wird per **PayPal Freunde & Familie**, deshalb braucht die Seite keinen Shop und kein Backend.
+Website des Ulmer Malzkreis mit kleinem Shop für eigene Shirt-Designs.
+
+| Seite | Datei | Inhalt |
+|---|---|---|
+| `/` | `index.html` | Startseite: Über uns, Was wir machen, Collection-Teaser, Kontakt |
+| `/shop/` | `shop/index.html` | Malzkreis Collection: alle Produkte als Karten |
+| `/shop/dear-barcelona/` | `shop/dear-barcelona/index.html` | Produktseite mit Bestellformular und PayPal-Link |
 
 ## Anpassen
 
@@ -10,32 +14,30 @@ Alles Wichtige steht in **`js/config.js`**:
 
 | Was | Wo |
 |---|---|
-| PayPal.me-Link | `paypalMe` – ohne Betrag, z. B. `https://paypal.me/ulmermalzkreis` |
-| Preis, Versand, Größen, Farben, Bestellschluss, Produktions- und Liefertermin | `shirt` |
-| E-Mail für Bestellungen & Kontakt | `stammtisch.email` |
-| Kennzahlen (Mitglieder, Gründung, Bier) | `stammtisch` |
+| Produkte im Shop (Name, Bild, Link, Status) | `produkte` |
+| Preis, Größen, Bestellschluss, Produktion des aktuellen Shirts | `shirt` |
+| PayPal.me-Link | `paypalMe` |
+| E-Mail für Bestellungen & Kontakt, Kennzahlen | `stammtisch` |
+| Übermittlung der Bestellungen | `orderMode`, `orderWebhook` |
 
-Weitere Stellen, die noch ausgefüllt werden sollten (mit `TODO` markiert):
+### Neues Produkt hinzufügen
 
-- **Shirt-Fotos**: Aktuell zeigt die Seite eine SVG-Vorschau des Shirts, die automatisch die
-  Farbe wechselt. Für echte Fotos in `index.html` die beiden `<div class="shirt-photo …">`
-  durch `<img src="assets/shirt-front.jpg">` bzw. `shirt-back.jpg` ersetzen.
-- **Logo**: Das Wortmarken-Logo kann in `.brand` gegen `<img src="assets/logo.svg">` getauscht werden.
+1. Fotos nach `assets/` legen.
+2. In `js/config.js` einen Eintrag unter `produkte` ergänzen (mit eigenem `preis`).
+3. Für die Produktseite `shop/dear-barcelona/` als Vorlage nach `shop/<neuer-slug>/` kopieren.
+   Bestellformular und Texte sind aktuell noch auf ein Shirt (`shirt` in der Config) zugeschnitten;
+   bei mehreren gleichzeitig bestellbaren Produkten sollte die Bestelllogik auf Produkt-IDs umgestellt werden.
 
-## Wie kommen die Bestellungen an?
+## Bestellungen
 
 `orderMode` in `config.js`:
 
 - **`mailto`** (Standard): Beim Absenden öffnet sich beim Besteller das Mailprogramm mit einer
-  fertigen Bestellmail an `stammtisch.email`. Funktioniert überall, braucht kein Setup.
-- **`webhook`**: Die Bestellung wird als JSON an `orderWebhook` gesendet. Passt für Make.com,
-  n8n, Zapier oder Formspree. Damit lassen sich Bestellungen z. B. automatisch in ein Google Sheet
-  schreiben.
-- **`netlify`**: Wenn die Seite auf Netlify liegt, landen die Bestellungen in Netlify Forms.
-  Das Formular ist dafür bereits vorbereitet (`data-netlify="true"`).
+  fertigen Bestellmail an `stammtisch.email`.
+- **`webhook`**: Die Bestellung wird als JSON an `orderWebhook` gesendet (Make.com, n8n, Formspree …).
 
-Nach dem Absenden bekommt der Besteller den PayPal-Link mit dem exakten Betrag
-(`paypal.me/NAME/25.00EUR`) sowie einen Verwendungszweck zum Kopieren.
+Nach dem Absenden bekommt der Besteller den PayPal-Link mit dem exakten Betrag sowie einen
+Verwendungszweck zum Kopieren.
 
 ## Hosting: Cloudflare Workers unter malzkreis.de
 
@@ -45,7 +47,7 @@ Die Seite läuft als Cloudflare Worker mit Static Assets.
 |---|---|
 | `wrangler.jsonc` | Worker-Konfiguration, Custom Domains `malzkreis.de` und `www.malzkreis.de` |
 | `src/worker.js` | Leitet `www` auf die Hauptdomain um, setzt Sicherheits- und Cache-Header |
-| `scripts/build.mjs` | Kopiert die Seite nach `dist/` und setzt den Cache-Buster (`?v=dev` → Commit-SHA) |
+| `scripts/build.mjs` | Kopiert Startseite, Shop und Dateien nach `dist/` und setzt in allen Seiten den Cache-Buster (`?v=dev` → Commit-SHA) |
 
 `wrangler deploy` baut automatisch vorher (`"build"` in `wrangler.jsonc`).
 

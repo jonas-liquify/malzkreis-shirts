@@ -1,8 +1,8 @@
 /*
  * ============================================================
- *  ULMER MALZKREIS SHIRT-SHOP – KONFIGURATION
- *  Hier alle Texte, Preise, Größen und Links anpassen.
- *  index.html und main.js müssen dafür nicht angefasst werden.
+ *  ULMER MALZKREIS – KONFIGURATION (Startseite, Shop, Produktseite)
+ *  Hier alle Texte, Preise, Größen, Produkte und Links anpassen.
+ *  Die HTML- und JS-Dateien müssen dafür nicht angefasst werden.
  * ============================================================
  */
 window.SHOP_CONFIG = {
@@ -41,6 +41,24 @@ window.SHOP_CONFIG = {
     produktion: "November 2026",    // Wann die Shirts produziert werden (Text, frei formulierbar)
     lieferung: "rechtzeitig vor Weihnachten",   // Wann die Shirts voraussichtlich da sind (Text)
   },
+
+  // --- Malzkreis Collection: Produkte im Shop ------------------
+  // Jedes Produkt bekommt eine Karte auf der Startseite und unter /shop/.
+  // Pfade relativ zur Website-Wurzel. Ohne "preis" wird der Preis aus "shirt" übernommen.
+  // status: "vorbestellung" | "verfuegbar" | "ausverkauft" | "demnaechst"
+  produkte: [
+    {
+      slug: "dear-barcelona",
+      name: "Dear Barcelona",
+      untertitel: "Oversize-Shirt in Creme, Druck in Münster-Grün",
+      bild: "assets/shirt-back.jpg",
+      bildHover: "assets/shirt-front.jpg",
+      url: "shop/dear-barcelona/",
+      status: "vorbestellung",
+    },
+  ],
+  // Platzhalter-Karte "Nächstes Design" anzeigen, solange es nur wenige Produkte gibt
+  platzhalterKarte: true,
 
   // --- Bestell-Übermittlung ----------------------------------
   // "mailto"  : öffnet das Mailprogramm des Bestellers mit fertiger Bestellmail (funktioniert überall, kein Setup)
