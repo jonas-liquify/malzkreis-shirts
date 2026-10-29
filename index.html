@@ -66,44 +66,39 @@
     <!-- ===== HERO ===== -->
     <section class="hero hero-home">
       <svg class="hero-watermark" aria-hidden="true"><use href="#muenster"/></svg>
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
+      <div class="container">
+        <div class="hero-copy hero-copy-wide reveal">
           <div class="eyebrow">
             <span class="dot" aria-hidden="true"></span>
             <span>Stammtisch aus Ulm · seit 2024</span>
           </div>
           <h1 class="heading-1 hero-title">Ulmer<br>Malzkreis.</h1>
-          <p class="lead">
-            Wir sind ein Stammtisch aus bierbegeisterten Menschen, die sich regelmäßig treffen,
-            um gemeinsam zu philosophieren, zu lachen und das ein oder andere Glas zu heben.
-          </p>
-          <p class="lead lead-secondary">
-            Seit 2024 sitzen wir zusammen – in Ulm, im Schatten des höchsten Kirchturms der Welt.
-            Ohne Tagesordnung, aber mit Haltung.
-          </p>
-          <div class="hero-actions">
-            <a href="#ueber-uns" class="button button-primary button-large">Mehr über uns</a>
-            <a href="#kontakt" class="button button-ghost">Kontakt</a>
+          <div class="hero-intro">
+            <p class="lead">
+              Wir sind ein Stammtisch aus bierbegeisterten Menschen, die sich regelmäßig treffen,
+              um gemeinsam zu philosophieren, zu lachen und das ein oder andere Glas zu heben.
+            </p>
+            <div>
+              <p class="lead lead-secondary">
+                Seit 2024 sitzen wir zusammen – in Ulm, im Schatten des höchsten Kirchturms der Welt.
+                Ohne Tagesordnung, aber mit Haltung.
+              </p>
+              <div class="hero-actions">
+                <a href="#ueber-uns" class="button button-primary button-large">Mehr über uns</a>
+                <a href="#kontakt" class="button button-ghost">Kontakt</a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="hero-visual reveal reveal-delay">
-          <div class="hero-frame">
-            <div class="story-poster hero-poster">
-              <p class="poster-small">Ulmer Malzkreis</p>
-              <p class="poster-big">Gute Gesellschaft. Gutes Bier.</p>
-              <p class="poster-year">2024</p>
-              <svg class="poster-muenster" aria-hidden="true"><use href="#muenster"/></svg>
-            </div>
-            <span class="seal" aria-hidden="true">
-              <svg viewBox="0 0 200 200">
-                <defs><path id="seal-circle" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
-                <text class="seal-text" textLength="446" lengthAdjust="spacing"><textPath href="#seal-circle" textLength="446" lengthAdjust="spacing">Stammtisch · Aus Ulm · Seit 2024 · </textPath></text>
-              </svg>
-              <span class="seal-center">Prost</span>
-            </span>
+        <!-- Gruppenbild: Datei unter assets/gruppenbild.jpg ablegen, dann erscheint es automatisch -->
+        <figure class="hero-photo reveal reveal-delay" data-photo>
+          <img src="assets/gruppenbild.jpg" alt="Der Ulmer Malzkreis am Stammtisch" loading="eager" decoding="async">
+          <div class="hero-photo-placeholder" aria-hidden="true">
+            <svg class="hero-photo-mark"><use href="#muenster"/></svg>
+            <span>Gruppenbild folgt</span>
           </div>
-        </div>
+        </figure>
       </div>
     </section>
 
