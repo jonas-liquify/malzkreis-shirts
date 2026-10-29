@@ -77,3 +77,14 @@
   });
   document.querySelectorAll('[data-bind="sommerfest-link"]').forEach((a) => (a.href = st.sommerfestUrl));
 })();
+
+/* Startseite: Platzhalter, solange assets/gruppenbild.jpg fehlt */
+(function () {
+  document.querySelectorAll("[data-photo]").forEach((fig) => {
+    const img = fig.querySelector("img");
+    if (!img) return;
+    const missing = () => fig.classList.add("is-missing");
+    if (img.complete && img.naturalWidth === 0) missing();
+    img.addEventListener("error", missing);
+  });
+})();
