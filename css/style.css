@@ -459,8 +459,6 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--g
 .nav-links a[aria-current="page"] { opacity: 1; color: var(--green); }
 .hero-home .hero-title { font-size: calc(clamp(2.8rem, 7vw, 5.6rem) * var(--display-scale)); }
 .hero-frame { display: block; text-decoration: none; color: inherit; }
-.hero-caption { margin: 0; font-size: .95rem; color: var(--muted); text-align: center; }
-.hero-caption strong { color: var(--ink); }
 
 .page-header { position: relative; overflow: hidden; padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2.5rem); }
 .page-header .lead { max-width: 52ch; }
@@ -513,3 +511,6 @@ a.product-card:hover .product-img { transform: scale(1.03); }
 @media (max-width: 960px) {
   .features { grid-template-columns: 1fr; }
 }
+
+/* Startseiten-Hero: Plakat statt Shirt-Foto */
+.hero-poster { position: relative; z-index: 1; min-height: 0; aspect-ratio: 1 / 1.02; }
